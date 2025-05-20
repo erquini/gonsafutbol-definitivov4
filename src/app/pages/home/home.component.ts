@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import emailjs from '@emailjs/browser';
+import { OpinionesService } from '../../services/opiniones.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import emailjs from '@emailjs/browser';
   styleUrls: ['./home.component.css'],
   standalone: false
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   // Lista de categorías mostradas en el home
   categorias = [
     { nombre: 'Selecciones', imagen: 'assets/images/selecciones.png' },
@@ -15,8 +16,6 @@ export class HomeComponent {
     { nombre: 'Históricas', imagen: 'assets/images/historicas.png' },
     { nombre: 'Personalizadas', imagen: 'assets/images/personalizadas.png' }
   ];
-  
-
 
   // Productos destacados
   productosPopulares = [
@@ -46,12 +45,8 @@ export class HomeComponent {
     }
   ];
 
-  // Opiniones de clientes
-  opiniones = [
-    { texto: '¡La camiseta llegó perfecta y muy rápido!', autor: 'Carlos García' },
-    { texto: 'Excelente calidad y diseño. Muy recomendada.', autor: 'Lucía Fernández' },
-    { texto: 'Me encantó la opción de personalizar. ¡10/10!', autor: 'Pedro Ramírez' }
-  ];
+  // Opiniones desde base de datos
+  opiniones: any[] = [];
 
   // Galería de imágenes
   imagenesGaleria = [
@@ -71,9 +66,23 @@ export class HomeComponent {
   private TEMPLATE_ID = 'template_wcx3jeu';
   private PUBLIC_KEY = 'pWvKxZdYaipY6srTM';
 
+  constructor(private opinionesService: OpinionesService) {}
+
+  ngOnInit(): void {
+this.opinionesService.getOpiniones().subscribe((res: any) => {
+  const todas = res.opiniones;
+  this.opiniones = this.obtenerAleatorias(todas, 3);
+});
+
+  }
+obtenerAleatorias(lista: any[], cantidad: number): any[] {
+  const mezcladas = [...lista].sort(() => 0.5 - Math.random());
+  return mezcladas.slice(0, cantidad);
+}
+
   // Enviar suscripción por email
- suscribirse(event?: Event) {
-  event?.preventDefault();      
+  suscribirse(event?: Event) {
+    event?.preventDefault();
     this.mensaje = '';
 
     if (!this.email || !this.email.includes('@')) {

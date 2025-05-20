@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { EventosService } from '../../services/eventos.service';
+import { OpinionesService } from '../../services/opiniones.service'; // <-- Añadido
 
 interface Team {
   id: number;
@@ -45,11 +46,25 @@ export class CalendarioEventosComponent implements OnInit {
   hasLoadedCompetitions = false;
   selectedCompetitionCode: string = '';
 
-  constructor(private eventosService: EventosService) {}
+  opiniones: any[] = []; // <-- Reemplaza las fijas
+
+  constructor(
+    private eventosService: EventosService,
+    private opinionesService: OpinionesService
+  ) {}
 
   ngOnInit(): void {
     this.searchTerm = '';
     this.loadCompetitions();
+
+    // ✅ Obtener opiniones aleatorias
+    this.opinionesService.getOpiniones().subscribe((res: any) => {
+      this.opiniones = this.obtenerAleatorias(res.opiniones, 3);
+    });
+  }
+
+  obtenerAleatorias(lista: any[], cantidad: number): any[] {
+    return [...lista].sort(() => Math.random() - 0.5).slice(0, cantidad);
   }
 
   loadCompetitions(): void {
@@ -201,10 +216,4 @@ export class CalendarioEventosComponent implements OnInit {
       });
     }
   }
-
-  opiniones = [
-    { texto: 'Es súper útil para ver cuándo juega mi equipo.', autor: 'Marta R. de Valencia' },
-    { texto: 'Una herramienta imprescindible cada fin de semana.', autor: 'Luis D. de Sevilla' },
-    { texto: 'Gracias a esta sección ya no me pierdo ningún partido.', autor: 'Jorge F. de Bilbao' }
-  ];
 }

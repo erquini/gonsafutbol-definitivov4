@@ -116,18 +116,31 @@
 </section>
 
 
-  <!-- Opiniones de clientes -->
-  <section class="mt-5">
-    <h2 class="text-center text-info mb-4">Lo que dicen nuestros clientes</h2>
-    <div class="row">
-      <div class="col-md-4" *ngFor="let opinion of opiniones">
-        <div class="testimonial p-3 bg-light rounded shadow">
-          <p class="fst-italic">"{{ opinion.texto }}"</p>
-          <p class="fw-bold text-end mb-0">- {{ opinion.autor }}</p>
+<!-- Opiniones de Clientes -->
+<section class="mt-5">
+  <h2 class="text-center text-info mb-4">Lo que dicen nuestros clientes</h2>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let o of opiniones">
+      <div class="testimonial p-3 bg-white shadow rounded h-100">
+        <div class="d-flex align-items-center mb-2">
+          <img [src]="o.avatar" class="rounded-circle me-3 border"
+               style="width: 40px; height: 40px; object-fit: cover;" alt="Avatar de cliente">
+          <div>
+            <h6 class="fw-bold mb-0">{{ o.nombre }}</h6>
+            <small class="text-muted">📍 {{ o.ciudad }}</small>
+          </div>
+        </div>
+        <p class="fst-italic text-secondary mt-3">“{{ o.comentario }}”</p>
+        <div class="text-warning">
+          <ng-container *ngFor="let i of [1,2,3,4,5]">
+            <i class="bi" [ngClass]="i <= o.puntuacion ? 'bi-star-fill' : 'bi-star'"></i>
+          </ng-container>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
 <!-- Galería Retro-->
 <section class="mt-5">

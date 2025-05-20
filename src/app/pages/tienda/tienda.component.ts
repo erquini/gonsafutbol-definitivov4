@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
 import { Producto } from '../../interfaces/producto';
+import { OpinionesService } from '../../services/opiniones.service';
 import emailjs from '@emailjs/browser';
 
 @Component({
@@ -9,28 +10,16 @@ import emailjs from '@emailjs/browser';
   styleUrls: ['./tienda.component.css'],
   standalone: false
 })
-export class TiendaComponent {
-  // Productos
+export class TiendaComponent implements OnInit {
   productos: Producto[] = [];
   productosFiltrados: Producto[] = [];
 
-
-  // Filtros
   filtroEquipo: string = '';
   filtroTemporada: string = '';
   filtroPrecio: number = 200;
-
-  // Orden actual
   orden: string = 'precioAsc';
 
-  // Opiniones para mostrar (para HTML extendido)
-  opiniones = [
-    { texto: 'La calidad es espectacular. Volveré a comprar.', autor: 'Carlos García' },
-    { texto: 'Excelente servicio y envío rápido.', autor: 'Lucía Fernández' },
-    { texto: 'La personalización quedó increíble. ¡Gracias!', autor: 'Pedro Ramírez' }
-  ];
-
-  // Galería
+  opiniones: any[] = [];
   imagenesGaleria = [
     'assets/images/galeria1.jpg',
     'assets/images/galeria2.jpg',
@@ -38,25 +27,35 @@ export class TiendaComponent {
     'assets/images/galeria4.jpg',
   ];
 
-  constructor(private productoService: ProductoService) {}
+  email: string = '';
+  mensaje: string = '';
+  mensajeExito: string = '';
+  mensajeError: string = '';
 
-  ngOnInit() {
-    // Obtener productos del servicio
+  private SERVICE_ID = 'service_302z81o';
+  private TEMPLATE_ID = 'template_wcx3jeu';
+  private PUBLIC_KEY = 'pWvKxZdYaipY6srTM';
+
+  constructor(
+    private productoService: ProductoService,
+    private opinionesService: OpinionesService
+  ) {}
+
+  ngOnInit(): void {
     this.productos = this.productoService.getProductos();
-
-    // Aplicar filtros por defecto (todos)
     this.aplicarFiltros();
+
+    this.opinionesService.getOpiniones().subscribe((res: any) => {
+      this.opiniones = this.obtenerAleatorias(res.opiniones, 3);
+    });
   }
 
   aplicarFiltros(): void {
-    // Filtros combinados
     this.productosFiltrados = this.productos.filter(producto =>
       producto.equipo.toLowerCase().includes(this.filtroEquipo.toLowerCase()) &&
       producto.temporada.toLowerCase().includes(this.filtroTemporada.toLowerCase()) &&
       producto.precio <= this.filtroPrecio
     );
-
-    // Ordenar después de filtrar
     this.ordenarProductos();
   }
 
@@ -80,37 +79,33 @@ export class TiendaComponent {
         break;
     }
   }
-  email: string = '';
-mensaje: string = '';
-mensajeExito: string = '';
-mensajeError: string = '';
 
-private SERVICE_ID = 'service_302z81o';
-private TEMPLATE_ID = 'template_wcx3jeu';
-private PUBLIC_KEY = 'pWvKxZdYaipY6srTM';
-
-suscribirse(event?: Event) {
-  event?.preventDefault();
-  this.mensajeExito = '';
-  this.mensajeError = '';
-
-  if (!this.email || !this.email.includes('@')) {
-    this.mensajeError = '⚠️ Por favor, introduce un correo válido.';
-    return;
+  obtenerAleatorias(lista: any[], cantidad: number): any[] {
+    return [...lista].sort(() => Math.random() - 0.5).slice(0, cantidad);
   }
 
-  const templateParams = {
-    to_email: this.email,
-    message: `¡Gracias por suscribirte a GonsaFútbol! Pronto recibirás nuestras novedades.`
-  };
+  suscribirse(event?: Event) {
+    event?.preventDefault();
+    this.mensajeExito = '';
+    this.mensajeError = '';
 
-  emailjs.send(this.SERVICE_ID, this.TEMPLATE_ID, templateParams, this.PUBLIC_KEY)
-    .then(() => {
-      this.mensajeExito = '✅ ¡Suscripción exitosa! Revisa tu bandeja de entrada.';
-      this.email = '';
-    })
-    .catch(() => {
-      this.mensajeError = '❌ Error al enviar el correo. Inténtalo más tarde.';
-    });
-}
+    if (!this.email || !this.email.includes('@')) {
+      this.mensajeError = '⚠️ Por favor, introduce un correo válido.';
+      return;
+    }
+
+    const templateParams = {
+      to_email: this.email,
+      message: `¡Gracias por suscribirte a GonsaFútbol! Pronto recibirás nuestras novedades.`
+    };
+
+    emailjs.send(this.SERVICE_ID, this.TEMPLATE_ID, templateParams, this.PUBLIC_KEY)
+      .then(() => {
+        this.mensajeExito = '✅ ¡Suscripción exitosa! Revisa tu bandeja de entrada.';
+        this.email = '';
+      })
+      .catch(() => {
+        this.mensajeError = '❌ Error al enviar el correo. Inténtalo más tarde.';
+      });
+  }
 }

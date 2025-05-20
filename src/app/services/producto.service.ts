@@ -175,7 +175,160 @@ export class ProductoService {
       precio: 59.99,
       descripcion: 'Pack especial con 3 camisetas totalmente personalizadas.',
       stock: 5
-  }
+  },
+  {
+  id: 18,
+  nombre: 'Camiseta de Iniesta 2010',
+  equipo: 'España',
+  temporada: '2010',
+  imagen: 'assets/images/iniesta.jpg',
+  precio: 84.99,
+  descripcion: 'Camiseta con la que Iniesta marcó el gol de la final del Mundial 2010.',
+  stock: 7
+  },
+  {
+  id: 19,
+  nombre: 'Camiseta de Buffon 2006',
+  equipo: 'Italia',
+  temporada: '2006',
+  imagen: 'assets/images/buffon.jpg',
+  precio: 69.99,
+  descripcion: 'Camiseta del mítico portero italiano en el Mundial de Alemania 2006.',
+  stock: 4
+  },
+  {
+  id: 20,
+  nombre: 'Camiseta de Rooney 2004',
+  equipo: 'Inglaterra',
+  temporada: '2004',
+  imagen: 'assets/images/rooney.jpg',
+  precio: 74.99,
+  descripcion: 'Camiseta de Wayne Rooney en la Euro 2004 con Inglaterra.',
+  stock: 6
+},
+{
+  id: 21,
+  nombre: 'Camiseta de Xavi 2008',
+  equipo: 'España',
+  temporada: '2008',
+  imagen: 'assets/images/xavi.jpg',
+  precio: 79.99,
+  descripcion: 'Camiseta de Xavi en la Eurocopa 2008 ganada por España.',
+  stock: 5
+},
+{
+  id: 22,
+  nombre: 'Camiseta de Drogba 2007',
+  equipo: 'Chelsea',
+  temporada: '2007',
+  imagen: 'assets/images/drogba.jpg',
+  precio: 69.99,
+  descripcion: 'Camiseta clásica de Didier Drogba durante su etapa en el Chelsea.',
+  stock: 8
+},
+{
+  id: 23,
+  nombre: 'Camiseta de Kaká 2007',
+  equipo: 'AC Milan',
+  temporada: '2007',
+  imagen: 'assets/images/kaka.jpg',
+  precio: 79.99,
+  descripcion: 'Camiseta del año en que Kaká ganó el Balón de Oro con el Milan.',
+  stock: 4
+},
+{
+  id: 24,
+  nombre: 'Camiseta de Del Piero 2002',
+  equipo: 'Juventus',
+  temporada: '2002',
+  imagen: 'assets/images/delpiero.jpg',
+  precio: 69.99,
+  descripcion: 'Camiseta retro de Del Piero en sus mejores años en la Juventus.',
+  stock: 5
+},
+{
+  id: 25,
+  nombre: 'Camiseta de Robben 2014',
+  equipo: 'Holanda',
+  temporada: '2014',
+  imagen: 'assets/images/robben.jpg',
+  precio: 74.99,
+  descripcion: 'Camiseta de Robben durante el Mundial de Brasil 2014.',
+  stock: 6
+},
+{
+  id: 26,
+  nombre: 'Camiseta de Griezmann 2018',
+  equipo: 'Francia',
+  temporada: '2018',
+  imagen: 'assets/images/griezmann.jpg',
+  precio: 84.99,
+  descripcion: 'Camiseta del Mundial 2018 ganada por Francia.',
+  stock: 5
+},
+{
+  id: 27,
+  nombre: 'Camiseta de Lewandowski 2020',
+  equipo: 'Polonia',
+  temporada: '2020',
+  imagen: 'assets/images/lewandowski.jpg',
+  precio: 69.99,
+  descripcion: 'Camiseta de uno de los delanteros más letales del mundo.',
+  stock: 7
+},
+{
+  id: 28,
+  nombre: 'Camiseta de Totti 2006',
+  equipo: 'Italia',
+  temporada: '2006',
+  imagen: 'assets/images/totti.jpg',
+  precio: 79.99,
+  descripcion: 'Camiseta de Francesco Totti durante el Mundial de Alemania.',
+  stock: 3
+},
+{
+  id: 29,
+  nombre: 'Camiseta de Benzema 2022',
+  equipo: 'Real Madrid',
+  temporada: '2022',
+  imagen: 'assets/images/benzema.jpg',
+  precio: 89.99,
+  descripcion: 'Camiseta con la que Benzema brilló en la Champions 2022.',
+  stock: 9
+},
+{
+  id: 30,
+  nombre: 'Camiseta de Modric 2018',
+  equipo: 'Croacia',
+  temporada: '2018',
+  imagen: 'assets/images/modric.jpg',
+  precio: 89.99,
+  descripcion: 'Camiseta de Modric cuando lideró a Croacia a la final del Mundial.',
+  stock: 6
+},
+{
+  id: 31,
+  nombre: 'Camiseta de Haaland 2023',
+  equipo: 'Manchester City',
+  temporada: '2023',
+  imagen: 'assets/images/haaland.jpg',
+  precio: 94.99,
+  descripcion: 'Camiseta de Erling Haaland tras su temporada goleadora histórica en el City.',
+  stock: 7
+},
+{
+  id: 32,
+  nombre: 'Camiseta de Bellingham 2024',
+  equipo: 'Real Madrid',
+  temporada: '2024',
+  imagen: 'assets/images/bellingham.jpg',
+  precio: 89.99,
+  descripcion: 'Camiseta de la revelación inglesa en su primera gran temporada con el Madrid.',
+  stock: 6
+}
+
+
+  
 
   ];
 

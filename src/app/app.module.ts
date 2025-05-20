@@ -31,13 +31,14 @@ import { VideosComponent } from './pages/videos/videos.component';
 import { DetalleVideoComponent } from './pages/detalle-video/detalle-video.component';
 import { CalendarioEventosComponent } from './pages/calendario-eventos/calendario-eventos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-
+import { OpinionesComponent } from './pages/opiniones/opiniones.component';
 
 // Servicios
 import { FutbolistasService } from './services/futbolistas.service';
 import { VideosService } from './services/videos.service';
 import { EventosService } from './services/eventos.service';
 import { GelatoService } from './services/gelato.service';
+import { OpinionesService } from './services/opiniones.service';
 
 @NgModule({
   declarations: [
@@ -60,8 +61,7 @@ import { GelatoService } from './services/gelato.service';
     DetalleVideoComponent,
     CalendarioEventosComponent,
     PerfilComponent,
-    
-    
+    OpinionesComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +74,13 @@ import { GelatoService } from './services/gelato.service';
     MatButtonModule,
     MatIconModule
   ],
-  providers: [FutbolistasService, VideosService, EventosService,GelatoService ],
+  providers: [
+    FutbolistasService,
+    VideosService,
+    EventosService,
+    GelatoService,
+    OpinionesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

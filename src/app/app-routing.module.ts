@@ -19,7 +19,7 @@ import { FutbolistaDetalleComponent } from './pages/futbolista-detalle/futbolist
 import { DetalleVideoComponent } from './pages/detalle-video/detalle-video.component';
 import { CalendarioEventosComponent } from './pages/calendario-eventos/calendario-eventos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-
+import { OpinionesComponent } from './pages/opiniones/opiniones.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,8 +42,8 @@ const routes: Routes = [
   { path: 'videos/:id', component: DetalleVideoComponent },
   { path: 'eventos', component: CalendarioEventosComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'opiniones', component: OpinionesComponent }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

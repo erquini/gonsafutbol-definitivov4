@@ -1,0 +1,61 @@
+<div class="container my-5">
+  <h2 class="text-center display-5 fw-bold mb-5 text-gradient">🗣 Opiniones Reales de Nuestros Clientes</h2>
+
+  <!-- Formulario -->
+  <div *ngIf="usuarioAutenticado" class="bg-light p-4 rounded-4 shadow-sm mb-5 border border-info">
+    <h4 class="text-primary mb-3">✍️ Deja tu opinión</h4>
+    <form (ngSubmit)="enviarOpinion()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Ciudad</label>
+          <input type="text" class="form-control rounded-pill" [(ngModel)]="nuevaOpinion.ciudad" name="ciudad" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Puntuación</label>
+          <div class="d-flex align-items-center">
+            <ng-container *ngFor="let i of [1,2,3,4,5]">
+              <span (click)="nuevaOpinion.puntuacion = i"
+                    class="star fs-4 me-1"
+                    [class.active]="i <= nuevaOpinion.puntuacion"
+                    style="cursor: pointer;">★</span>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Comentario</label>
+          <textarea class="form-control rounded-3" [(ngModel)]="nuevaOpinion.comentario" name="comentario" rows="3" required></textarea>
+        </div>
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold mt-2">✅ Enviar opinión</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Opiniones -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div *ngFor="let o of opiniones" class="col">
+      <div class="card h-100 p-4 shadow-sm rounded-4 border border-light-subtle">
+        <div class="d-flex align-items-center mb-3">
+          <img [src]="o.avatar" alt="avatar" class="rounded-circle me-3 border border-secondary shadow-sm"
+               style="width: 55px; height: 55px; object-fit: cover;">
+          <div>
+            <h6 class="fw-bold mb-0">{{ o.nombre }}</h6>
+            <small class="text-muted">📍 {{ o.ciudad }}</small>
+          </div>
+        </div>
+
+        <p class="fst-italic text-secondary">“{{ o.comentario }}”</p>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <div>
+            <ng-container *ngFor="let estrella of [1,2,3,4,5]">
+              <i class="bi" [ngClass]="estrella <= o.puntuacion ? 'bi-star-fill text-warning' : 'bi-star text-muted'"></i>
+            </ng-container>
+          </div>
+          <small class="text-muted">{{ o.fecha | date:'dd/MM/yyyy HH:mm' }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CarritoService } from '../../services/carrito.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { Producto } from '../../interfaces/producto';
+import { OpinionesService } from '../../services/opiniones.service';
+
 
 interface Recomendacion {
   nombre: string;
@@ -48,20 +50,8 @@ export class CarritoComponent implements OnInit {
     }
   ];
 
-  opiniones = [
-    {
-      texto: 'La camiseta llegó súper rápido y con una calidad espectacular. Superó mis expectativas.',
-      autor: 'Mario G. de Madrid'
-    },
-    {
-      texto: 'Increíble atención al cliente. Me guiaron durante todo el proceso de compra sin problema.',
-      autor: 'Laura F. de Sevilla'
-    },
-    {
-      texto: 'Volveré a comprar sin dudarlo. La camiseta personalizada quedó perfecta y me encantó.',
-      autor: 'Carlos P. de Valencia'
-    }
-  ];
+opiniones: any[] = [];
+
 
   testimonios: Testimonio[] = [
     {
@@ -81,16 +71,26 @@ export class CarritoComponent implements OnInit {
     }
   ];
 
-  constructor(
-    private carritoService: CarritoService,
-    private router: Router,
-    private usuarioService: UsuarioService
-  ) {}
+constructor(
+  private carritoService: CarritoService,
+  private router: Router,
+  private usuarioService: UsuarioService,
+  private opinionesService: OpinionesService
+) {}
 
-  ngOnInit(): void {
-    this.carrito = this.carritoService.getCarrito();
-    this.calcularTotal();
+
+   ngOnInit(): void {
+this.opinionesService.getOpiniones().subscribe((res: any) => {
+  const todas = res.opiniones;
+  this.opiniones = this.obtenerAleatorias(todas, 3);
+});
+
   }
+obtenerAleatorias(lista: any[], cantidad: number): any[] {
+  const mezcladas = [...lista].sort(() => 0.5 - Math.random());
+  return mezcladas.slice(0, cantidad);
+}
+
 
   calcularTotal(): void {
     this.total = this.carrito.reduce((acc, producto) => acc + producto.precio, 0);

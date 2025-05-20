@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
+import { OpinionesService } from '../../services/opiniones.service';
 
 @Component({
   selector: 'app-perfil',
@@ -19,7 +20,12 @@ export class PerfilComponent implements OnInit {
   error: string = '';
   modoEdicion: boolean = false;
 
-  constructor(private usuarioService: UsuarioService) {}
+  opiniones: any[] = [];
+
+  constructor(
+    private usuarioService: UsuarioService,
+    private opinionesService: OpinionesService
+  ) {}
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(res => {
@@ -34,18 +40,19 @@ export class PerfilComponent implements OnInit {
         this.error = res.mensaje;
       }
     });
+
+    this.opinionesService.getOpiniones().subscribe((res: any) => {
+      this.opiniones = this.obtenerAleatorias(res.opiniones, 3);
+    });
+  }
+
+  obtenerAleatorias(lista: any[], cantidad: number): any[] {
+    return [...lista].sort(() => Math.random() - 0.5).slice(0, cantidad);
   }
 
   guardarCambios(): void {
     this.mensaje = '';
     this.error = '';
-
-    console.log('➡ Enviando:', {
-      nombre: this.nombre,
-      email: this.email,
-      direccion: this.direccion,
-      telefono: this.telefono
-    });
 
     if (!this.nombre || !this.email || !this.direccion || !this.telefono) {
       this.error = 'Todos los campos son obligatorios';
@@ -58,7 +65,6 @@ export class PerfilComponent implements OnInit {
       direccion: this.direccion,
       telefono: this.telefono
     }).subscribe(res => {
-      console.log('⬅ Respuesta:', res);
       if (res.status === 'ok') {
         this.mensaje = '✅ Perfil actualizado correctamente';
         this.modoEdicion = false;
@@ -91,19 +97,4 @@ export class PerfilComponent implements OnInit {
   alternarEdicion(): void {
     this.modoEdicion = !this.modoEdicion;
   }
-  opiniones = [
-  {
-    texto: '¡Excelente calidad y envío rapidísimo! Me encantó mi camiseta personalizada.',
-    autor: 'Andrea G. de Barcelona'
-  },
-  {
-    texto: 'Muy buena atención al cliente. Me ayudaron a corregir mi pedido sin problemas.',
-    autor: 'Carlos R. de Madrid'
-  },
-  {
-    texto: 'La experiencia de personalización es muy divertida. ¡Repetiré pronto!',
-    autor: 'Lucía M. de Sevilla'
-  }
-];
-
 }
