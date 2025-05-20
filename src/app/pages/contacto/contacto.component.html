@@ -55,10 +55,12 @@
         </div>
 
         <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" id="acepto" required>
-          <label class="form-check-label" for="acepto">
-            Acepto la <a href="#">política de privacidad</a> y el tratamiento de mis datos.
-          </label>
+        <input class="form-check-input" type="checkbox" id="acepto" [(ngModel)]="aceptaPolitica">
+<label class="form-check-label" for="acepto">
+  Acepto la <a routerLink="/politica-privacidad" target="_blank">política de privacidad</a> y el tratamiento de mis datos.
+</label>
+
+
         </div>
 
         <button type="button" class="btn btn-primary w-100 fw-bold" (click)="enviarMensaje()">📨 Enviar Mensaje</button>
@@ -68,11 +70,18 @@
 
   <!-- Redes sociales -->
   <div class="text-center mt-5">
-    <h5 class="mb-3">🌐 También puedes encontrarnos en:</h5>
-    <a href="#" class="me-3"><i class="bi bi-facebook fs-3 text-primary"></i></a>
-    <a href="#" class="me-3"><i class="bi bi-twitter-x fs-3 text-dark"></i></a>
-    <a href="#"><i class="bi bi-instagram fs-3 text-danger"></i></a>
-  </div>
+  <h5 class="mb-3">🌐 También puedes encontrarnos en:</h5>
+  <a href="https://facebook.com/gonsafutbol" target="_blank" class="me-3">
+    <i class="bi bi-facebook fs-3 text-primary"></i>
+  </a>
+  <a href="https://twitter.com/gonsafutbol" target="_blank" class="me-3">
+    <i class="bi bi-twitter-x fs-3 text-dark"></i>
+  </a>
+  <a href="https://instagram.com/gonsafutbol" target="_blank">
+    <i class="bi bi-instagram fs-3 text-danger"></i>
+  </a>
+</div>
+
 
   <!-- Mapa de ubicación -->
   <div class="mt-5">

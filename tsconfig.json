@@ -24,6 +24,6 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-"include": ["src/**/*.ts"]
+"include": ["src/**/*.ts","src/typings.d.ts"]
 
 }

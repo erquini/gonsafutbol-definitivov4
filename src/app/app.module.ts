@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// Angular Material opcional
+// Angular Material
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,11 +34,15 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { OpinionesComponent } from './pages/opiniones/opiniones.component';
 import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
 import { ContactoConfirmacionComponent } from './pages/contacto-confirmacion/contacto-confirmacion.component';
+import { PoliticaPrivacidadComponent } from './politica-privacidad/politica-privacidad.component';
 
 // Admin
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { UsuariosComponent } from './pages/admin/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/admin/productos/productos.component';
+
+// Nuevo componente de Unity
+import { UnityGameComponent } from './pages/unity-game/unity-game.component';
 
 // Servicios
 import { FutbolistasService } from './services/futbolistas.service';
@@ -71,11 +75,11 @@ import { OpinionesService } from './services/opiniones.service';
     OpinionesComponent,
     ConfirmacionComponent,
     ContactoConfirmacionComponent,
-
-    // Admin
+    PoliticaPrivacidadComponent,
     AdminDashboardComponent,
     UsuariosComponent,
-    ProductosComponent
+    ProductosComponent,
+    UnityGameComponent // <- aquí añadimos el componente Unity
   ],
   imports: [
     BrowserModule,
