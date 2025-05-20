@@ -1,0 +1,125 @@
+<div class="container mt-5 perfil-container text-center">
+  <!-- Mensajes -->
+  <div *ngIf="mensaje" class="alert alert-success shadow-sm border border-success fw-bold">
+    {{ mensaje }}
+  </div>
+  <div *ngIf="error" class="alert alert-danger shadow-sm border border-danger fw-bold">
+    {{ error }}
+  </div>
+
+  <!-- Tarjeta de perfil -->
+  <div class="card shadow-lg p-4 rounded-4 border-0 bg-white mb-4 animate-fade-in">
+    <div class="row g-4 align-items-center">
+      <!-- Avatar -->
+      <div class="col-md-4 text-center">
+        <img [src]="avatar || 'assets/images/default-avatar.png'" alt="Avatar"
+             class="rounded-circle shadow border border-3 border-primary" style="width: 140px; height: 140px; object-fit: cover;">
+      </div>
+
+      <!-- Información del usuario -->
+      <div class="col-md-8 text-md-start">
+        <h3 class="mb-1 text-primary fw-bold">{{ nombre }}</h3>
+        <p class="text-muted mb-1">📧 {{ email }}</p>
+        <p class="mb-1"><i class="bi bi-house-door"></i> {{ direccion }}</p>
+        <p><i class="bi bi-telephone"></i> {{ telefono }}</p>
+
+        <!-- Botones -->
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <button class="btn btn-outline-primary" (click)="alternarEdicion()">
+            ✏️ {{ modoEdicion ? 'Cancelar' : 'Editar perfil' }}
+          </button>
+
+          <label class="btn btn-outline-secondary mb-0">
+            📤 Cambiar avatar
+            <input type="file" hidden (change)="onFileSelected($event)" accept="image/*">
+          </label>
+
+          <button class="btn btn-success" (click)="subirAvatar()" [disabled]="!archivoSeleccionado">
+            💾 Subir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulario de edición -->
+  <div *ngIf="modoEdicion" class="card p-4 shadow border-0 bg-light mb-4 text-start animate-slide-in">
+    <h4 class="mb-3 text-primary">🛠 Editar información</h4>
+    <form ngForm>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-bold">👤 Nombre</label>
+          <input type="text" class="form-control rounded-pill px-4" [(ngModel)]="nombre" name="nombre">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">📧 Correo</label>
+          <input type="email" class="form-control rounded-pill px-4" [(ngModel)]="email" name="email">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">🏠 Dirección</label>
+          <input type="text" class="form-control rounded-pill px-4" [(ngModel)]="direccion" name="direccion">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">📞 Teléfono</label>
+          <input type="tel" class="form-control rounded-pill px-4" [(ngModel)]="telefono" name="telefono">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success w-100 fw-bold mt-4 rounded-pill">
+        💾 Guardar cambios
+      </button>
+    </form>
+  </div>
+
+  <!-- Sección de ventajas -->
+  <section class="mt-5">
+    <h3 class="text-secondary mb-4">🎁 Beneficios Exclusivos</h3>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <i class="bi bi-tag fs-2 text-success"></i>
+        <p class="fw-bold mt-2">Ofertas exclusivas</p>
+        <p class="text-muted">Accede a promociones especiales solo para miembros registrados.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-bag-check fs-2 text-primary"></i>
+        <p class="fw-bold mt-2">Historial de compras</p>
+        <p class="text-muted">Consulta y sigue tus pedidos anteriores con facilidad.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-stars fs-2 text-warning"></i>
+        <p class="fw-bold mt-2">Personalización premium</p>
+        <p class="text-muted">Guarda diseños favoritos y crea camisetas únicas para ti.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de opiniones -->
+  <section class="mt-5">
+    <h2 class="text-center text-info">Lo que dicen nuestros clientes</h2>
+    <div class="row mt-4">
+      <div class="col-md-4" *ngFor="let opinion of opiniones">
+        <div class="testimonial p-3 bg-white shadow rounded">
+          <p>"{{ opinion.texto }}"</p>
+          <h6 class="text-muted">- {{ opinion.autor }}</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+/* Estilos de animación suaves */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in;
+}
+.animate-slide-in {
+  animation: slideIn 0.6s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>

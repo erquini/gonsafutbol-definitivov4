@@ -1,0 +1,668 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gonsa-futbol documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gonsa-futbol documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HomeComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/home/home.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-home</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./home.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./home.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#productosPopulares" >productosPopulares</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(productoService: <a href="../injectables/ProductoService.html" target="_self">ProductoService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/pages/home/home.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>productoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ProductoService.html" target="_self" >ProductoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/pages/home/home.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productosPopulares"></a>
+                    <span class="name">
+                        <span ><b>productosPopulares</b></span>
+                        <a href="#productosPopulares"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Producto.html" target="_self" >Producto[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/pages/home/home.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { ProductoService } from &#x27;../../services/producto.service&#x27;;
+import { Producto } from &#x27;../../interfaces/producto&#x27;;
+
+@Component({
+  selector: &#x27;app-home&#x27;,
+  templateUrl: &#x27;./home.component.html&#x27;,
+  standalone: false,
+  styleUrls: [&#x27;./home.component.css&#x27;]
+})
+export class HomeComponent {
+  productosPopulares: Producto[] &#x3D; [];
+
+  constructor(private productoService: ProductoService) {}
+
+  ngOnInit() {
+    this.productosPopulares &#x3D; this.productoService.getProductos().slice(0, 3);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5 fade-in&quot;&gt;
+  &lt;!-- Banner Principal --&gt;
+  &lt;div class&#x3D;&quot;jumbotron text-center text-white p-5 rounded animate-slide banner-container&quot;&gt;
+    &lt;div class&#x3D;&quot;banner-content&quot;&gt;
+      &lt;h1 class&#x3D;&quot;fw-bold display-3&quot;&gt;⚽ Bienvenido a Gonsa Fútbol ⚽&lt;/h1&gt;
+      &lt;p class&#x3D;&quot;lead&quot;&gt;
+        Desde 2010, Gonsa Fútbol ha sido el destino favorito de los aficionados al fútbol retro.
+        Nos especializamos en camisetas icónicas de todas las épocas, para que puedas revivir 
+        los mejores momentos de la historia del fútbol.
+      &lt;/p&gt;
+      &lt;p&gt;
+        Con más de una década en el mercado, ofrecemos calidad, autenticidad y la pasión del fútbol en cada camiseta.
+        Descubre ediciones limitadas y productos exclusivos. ¡Encuentra la tuya y lleva contigo la historia del fútbol!
+      &lt;/p&gt;
+      &lt;!-- Botón que redirige a la tienda --&gt;
+      &lt;a routerLink&#x3D;&quot;/tienda&quot; class&#x3D;&quot;btn btn-warning btn-lg shadow animate-bounce&quot;&gt;🛒 Explorar Tienda&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Sección de Productos Populares --&gt;
+  &lt;h2 class&#x3D;&quot;text-center mt-5 text-success fade-in&quot;&gt;🔥 Camisetas Más Vendidas&lt;/h2&gt;
+  &lt;div class&#x3D;&quot;row mt-4&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-4&quot; *ngFor&#x3D;&quot;let producto of productosPopulares&quot;&gt;
+      &lt;!-- Card para cada camiseta --&gt;
+      &lt;div class&#x3D;&quot;card shadow animate-fade&quot;&gt;
+        &lt;img [src]&#x3D;&quot;producto.imagen&quot; class&#x3D;&quot;card-img-top&quot; [alt]&#x3D;&quot;producto.nombre&quot;&gt;
+        &lt;div class&#x3D;&quot;card-body text-center&quot;&gt;
+          &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{ producto.nombre }}&lt;/h5&gt;
+          &lt;p class&#x3D;&quot;fw-bold text-danger&quot;&gt;{{ producto.precio | currency:&#x27;EUR&#x27; }}&lt;/p&gt;
+          &lt;!-- Enlace para ver detalles del producto --&gt;
+          &lt;a [routerLink]&#x3D;&quot;[&#x27;/producto&#x27;, producto.id]&quot; class&#x3D;&quot;btn btn-primary animate-pulse&quot;&gt;Ver Detalles&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Sección de Opiniones de Clientes --&gt;
+  &lt;h2 class&#x3D;&quot;text-center mt-5 text-primary&quot;&gt;💬 Opiniones de Nuestros Clientes&lt;/h2&gt;
+  &lt;div class&#x3D;&quot;row mt-4&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+      &lt;!-- Testimonio de cliente 1 --&gt;
+      &lt;div class&#x3D;&quot;testimonial p-4 shadow rounded&quot;&gt;
+        &lt;p&gt;&quot;Increíble calidad, realmente me siento como en los 90 otra vez!&quot;&lt;/p&gt;
+        &lt;h5&gt;- Carlos Fernández&lt;/h5&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+      &lt;!-- Testimonio de cliente 2 --&gt;
+      &lt;div class&#x3D;&quot;testimonial p-4 shadow rounded&quot;&gt;
+        &lt;p&gt;&quot;La mejor tienda de camisetas retro, entrega rápida y sin problemas.&quot;&lt;/p&gt;
+        &lt;h5&gt;- Sofía López&lt;/h5&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+      &lt;!-- Testimonio de cliente 3 --&gt;
+      &lt;div class&#x3D;&quot;testimonial p-4 shadow rounded&quot;&gt;
+        &lt;p&gt;&quot;Ya tengo 5 camisetas de aquí, simplemente espectacular.&quot;&lt;/p&gt;
+        &lt;h5&gt;- Miguel Torres&lt;/h5&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./home.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.banner-container {
+  background: url(&#x27;/assets/images/logo.png&#x27;) no-repeat center center;
+  background-size: cover;
+  padding: 100px 20px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.banner-content {
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 10px;
+  color: white;
+}
+
+.shadow-text {
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide {
+  animation: slideIn 1s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-fade {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.testimonial {
+  background-color: #f8f9fa;
+  border-left: 5px solid #007bff;
+  text-align: center;
+}
+
+.testimonial h5 {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #007bff;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5 fade-in">  <!-- Banner Principal -->  <div class="jumbotron text-center text-white p-5 rounded animate-slide banner-container">    <div class="banner-content">      <h1 class="fw-bold display-3">⚽ Bienvenido a Gonsa Fútbol ⚽</h1>      <p class="lead">        Desde 2010, Gonsa Fútbol ha sido el destino favorito de los aficionados al fútbol retro.        Nos especializamos en camisetas icónicas de todas las épocas, para que puedas revivir         los mejores momentos de la historia del fútbol.      </p>      <p>        Con más de una década en el mercado, ofrecemos calidad, autenticidad y la pasión del fútbol en cada camiseta.        Descubre ediciones limitadas y productos exclusivos. ¡Encuentra la tuya y lleva contigo la historia del fútbol!      </p>      <!-- Botón que redirige a la tienda -->      <a routerLink="/tienda" class="btn btn-warning btn-lg shadow animate-bounce">🛒 Explorar Tienda</a>    </div>  </div>  <!-- Sección de Productos Populares -->  <h2 class="text-center mt-5 text-success fade-in">🔥 Camisetas Más Vendidas</h2>  <div class="row mt-4">    <div class="col-md-4" *ngFor="let producto of productosPopulares">      <!-- Card para cada camiseta -->      <div class="card shadow animate-fade">        <img [src]="producto.imagen" class="card-img-top" [alt]="producto.nombre">        <div class="card-body text-center">          <h5 class="card-title">{{ producto.nombre }}</h5>          <p class="fw-bold text-danger">{{ producto.precio | currency:\'EUR\' }}</p>          <!-- Enlace para ver detalles del producto -->          <a [routerLink]="[\'/producto\', producto.id]" class="btn btn-primary animate-pulse">Ver Detalles</a>        </div>      </div>    </div>  </div>  <!-- Sección de Opiniones de Clientes -->  <h2 class="text-center mt-5 text-primary">💬 Opiniones de Nuestros Clientes</h2>  <div class="row mt-4">    <div class="col-md-4">      <!-- Testimonio de cliente 1 -->      <div class="testimonial p-4 shadow rounded">        <p>"Increíble calidad, realmente me siento como en los 90 otra vez!"</p>        <h5>- Carlos Fernández</h5>      </div>    </div>    <div class="col-md-4">      <!-- Testimonio de cliente 2 -->      <div class="testimonial p-4 shadow rounded">        <p>"La mejor tienda de camisetas retro, entrega rápida y sin problemas."</p>        <h5>- Sofía López</h5>      </div>    </div>    <div class="col-md-4">      <!-- Testimonio de cliente 3 -->      <div class="testimonial p-4 shadow rounded">        <p>"Ya tengo 5 camisetas de aquí, simplemente espectacular."</p>        <h5>- Miguel Torres</h5>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarritoComponent', 'selector': 'app-carrito'},{'name': 'ConfirmacionComponent', 'selector': 'app-confirmacion'},{'name': 'ContactoComponent', 'selector': 'app-contacto'},{'name': 'ContactoConfirmacionComponent', 'selector': 'app-contacto-confirmacion'},{'name': 'DetalleProductoComponent', 'selector': 'app-detalle-producto'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FutbolComponent', 'selector': 'app-futbol'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ListaProductosComponent', 'selector': 'app-lista-productos'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'PagoComponent', 'selector': 'app-pago'},{'name': 'ProductoComponent', 'selector': 'app-producto'},{'name': 'RegistroComponent', 'selector': 'app-registro'},{'name': 'TiendaComponent', 'selector': 'app-tienda'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HomeComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HomeComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

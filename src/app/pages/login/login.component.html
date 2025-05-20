@@ -1,0 +1,61 @@
+<div class="container mt-5 login-container">
+  <h2 class="text-center text-primary mb-4">🔑 Iniciar Sesión</h2>
+
+  <!-- Formulario -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="p-4 border rounded shadow bg-light">
+        <div *ngIf="mensajeError" class="alert alert-danger text-center">{{ mensajeError }}</div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">📧 Correo Electrónico</label>
+          <input [(ngModel)]="email" name="email" id="email" type="email" class="form-control" placeholder="ejemplo@email.com" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label fw-bold">🔒 Contraseña</label>
+          <input [(ngModel)]="password" name="password" id="password" type="password" class="form-control" placeholder="********" required>
+        </div>
+
+        <button type="button" class="btn btn-primary w-100 fw-bold" (click)="iniciarSesion()">🔓 Ingresar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Beneficios -->
+  <section class="mt-5 text-center">
+    <h4 class="text-dark fw-bold mb-4">🎯 ¿Por qué iniciar sesión?</h4>
+    <div class="row">
+      <div class="col-md-4">
+        <i class="bi bi-bookmark-check fs-1 text-success"></i>
+        <p class="fw-bold mt-2">Guardar Favoritos</p>
+        <p>Accede a tus camisetas y pedidos favoritos en cualquier momento.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-person-lines-fill fs-1 text-info"></i>
+        <p class="fw-bold mt-2">Gestión de Perfil</p>
+        <p>Consulta y modifica tu información personal desde tu cuenta.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-currency-euro fs-1 text-warning"></i>
+        <p class="fw-bold mt-2">Ofertas Exclusivas</p>
+        <p>Desbloquea cupones y descuentos solo disponibles para miembros.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Opiniones de Clientes -->
+<section class="mt-5">
+  <h2 class="text-center text-info">Lo que dicen nuestros clientes</h2>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let opinion of opiniones">
+      <div class="testimonial p-3 bg-white shadow rounded">
+        <p>"{{ opinion.texto }}"</p>
+        <h6 class="text-muted">- {{ opinion.autor }}</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</div>

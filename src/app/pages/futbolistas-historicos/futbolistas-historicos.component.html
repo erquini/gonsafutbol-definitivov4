@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <h2 class="text-center text-primary mb-4">📚 Leyendas del Fútbol Mundial</h2>
+
+  <p class="text-center text-muted mb-5 lead">
+    Explora una galería de jugadores que han dejado huella en la historia del fútbol. Haz clic en cada jugador para conocer más sobre su carrera y logros.
+  </p>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let futbolista of futbolistas">
+      <div class="card h-100 shadow-sm border-0">
+        <img [src]="futbolista.imagen" class="card-img-top" [alt]="futbolista.nombre" height="260" style="object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ futbolista.nombre }}</h5>
+          <p class="card-text text-muted"><strong>🌍 País:</strong> {{ futbolista.pais }}</p>
+          <p class="card-text">{{ futbolista.descripcion }}</p>
+          <button class="btn btn-outline-primary w-100" (click)="verDetalle(futbolista.id)">
+            📖 Ver Biografía
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3 class="text-secondary">🏆 Reconocimientos globales</h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">✔️ Balón de Oro</li>
+      <li class="list-group-item">✔️ Mejor Jugador del Año FIFA</li>
+      <li class="list-group-item">✔️ Máximo goleador histórico de selecciones</li>
+      <li class="list-group-item">✔️ Más títulos ganados a nivel de clubes</li>
+    </ul>
+  </div>
+</div>

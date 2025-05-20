@@ -1,0 +1,358 @@
+/* HERO SECTION */
+.hero-section {
+  background-image: url("/assets/images/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(20, 20, 20, 0.7);
+  padding: 60px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fefefe;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.hero-overlay h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  text-shadow: 2px 2px #000;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-overlay p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
+.hero-overlay .btn {
+  background-color: #ffc107;
+  color: #212529;
+  font-weight: 600;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.hero-overlay .btn:hover {
+  background-color: #ffda6a;
+  color: #000;
+}
+
+/* CATEGORY CARDS */
+.category-card {
+  background: linear-gradient(135deg, #fff7e6, #f2f2f2);
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+/* TESTIMONIOS */
+.testimonial {
+  border-left: 5px solid #ff9800;
+  background-color: #ffffff;
+  padding: 20px;
+  font-style: italic;
+  transition: transform 0.3s;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.testimonial:hover {
+  transform: scale(1.03);
+}
+
+/* GALERÍA RETRO */
+.galeria-retro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 10px;
+}
+
+.galeria-col {
+  margin: 1rem;
+  flex: 0 0 calc(25% - 2rem);
+  max-width: calc(25% - 2rem);
+}
+
+@media (max-width: 768px) {
+  .galeria-col {
+    flex: 0 0 calc(50% - 2rem);
+    max-width: calc(50% - 2rem);
+  }
+}
+
+.galeria-item {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+}
+
+.galeria-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* GALERÍA DE CAMISETAS */
+.galeria-camisetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 20px;
+}
+
+.camiseta-col {
+  flex: 0 0 calc(25% - 2rem);
+  max-width: calc(25% - 2rem);
+}
+
+@media (max-width: 992px) {
+  .camiseta-col {
+    flex: 0 0 calc(33.33% - 2rem);
+    max-width: calc(33.33% - 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .camiseta-col {
+    flex: 0 0 calc(50% - 2rem);
+    max-width: calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .camiseta-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* GALERÍA GENERAL */
+.gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* FAQ */
+.accordion-button {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  color: #333;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #20c997;
+  color: white;
+}
+
+/* SPONSORS */
+section img {
+  height: 60px;
+  margin: 10px;
+  transition: transform 0.3s;
+  opacity: 0.9;
+}
+
+section img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* SOCIAL MEDIA ICONS */
+.social-icons a img {
+  transition: transform 0.3s ease;
+  opacity: 0.8;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* ANIMACIONES */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* NEWSLETTER */
+.newsletter {
+  background: linear-gradient(45deg, #343a40, #495057);
+  color: white;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.newsletter input {
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.newsletter button {
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+/* RESPONSIVE - HERO */
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1.1rem;
+  }
+
+  .hero-section {
+    background-position: center top;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-overlay {
+    padding: 30px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 2rem;
+  }
+
+  .hero-overlay .btn {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+}
+
+/* CUSTOM BACKGROUND */
+.bg-gradient-custom {
+  background: linear-gradient(135deg, #1f1f2e, #29293d, #33334d);
+  color: white;
+}
+
+/* PRODUCT IMAGE STYLES */
+.product-img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-img:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top.product-img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}

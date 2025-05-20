@@ -1,0 +1,133 @@
+<div class="container mt-5 registro-container text-center">
+  <h2 class="text-primary fw-bold mb-4 display-5">📝 Registro de Usuario</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="p-4 border rounded shadow bg-light text-start">
+        <div *ngIf="mensajeError" class="alert alert-danger text-center">{{ mensajeError }}</div>
+        <div *ngIf="mensajeExito" class="alert alert-success text-center">{{ mensajeExito }}</div>
+
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">👤 Nombre completo</label>
+          <input [(ngModel)]="nombre" name="nombre" type="text" class="form-control" placeholder="Tu nombre completo">
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">📧 Correo Electrónico</label>
+          <input [(ngModel)]="email" name="email" type="email" class="form-control" placeholder="ejemplo@email.com">
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">🔒 Contraseña</label>
+          <input [(ngModel)]="password" name="password" type="password" class="form-control" placeholder="Mínimo 6 caracteres">
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">🔒 Confirmar Contraseña</label>
+          <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" class="form-control" placeholder="Repite tu contraseña">
+        </div>
+
+        <!-- Dirección -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">🏠 Dirección</label>
+          <input [(ngModel)]="direccion" name="direccion" type="text" class="form-control" placeholder="Calle, número, ciudad...">
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-4">
+          <label class="form-label fw-bold">📞 Teléfono</label>
+          <input [(ngModel)]="telefono" name="telefono" type="tel" maxlength="9" class="form-control" placeholder="Ej: 612345678">
+        </div>
+
+        <!-- Botón de registro -->
+        <button type="button" class="btn btn-success w-100 fw-bold" (click)="registrar()">📝 Crear Cuenta</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Beneficios del Registro -->
+<section class="mt-5 mb-5 text-center">
+  <h3 class="text-secondary mb-4">🎁 ¿Por qué registrarte?</h3>
+  <div class="row text-center justify-content-center">
+    <div class="col-md-4">
+      <i class="bi bi-tag fs-2 text-success"></i>
+      <p class="fw-bold mt-2">Descuentos exclusivos</p>
+      <p>Recibe promociones y cupones especiales solo para miembros.</p>
+    </div>
+    <div class="col-md-4">
+      <i class="bi bi-pencil-square fs-2 text-danger"></i>
+      <p class="fw-bold mt-2">Camisetas personalizadas</p>
+      <p>Guarda tus diseños favoritos y crea tu estilo único.</p>
+    </div>
+    <div class="col-md-4">
+      <i class="bi bi-person-lines-fill fs-2 text-warning"></i>
+      <p class="fw-bold mt-2">Gestión de pedidos</p>
+      <p>Consulta tus compras, seguimientos y más desde tu perfil.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Opiniones de Clientes -->
+<section class="mt-5">
+  <h2 class="text-center text-info">Lo que dicen nuestros clientes</h2>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let opinion of opiniones">
+      <div class="testimonial p-3 bg-white shadow rounded">
+        <p>"{{ opinion.texto }}"</p>
+        <h6 class="text-muted">- {{ opinion.autor }}</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Preguntas frecuentes -->
+  <section class="mt-5">
+    <h3 class="text-info mb-4">❓ Preguntas Frecuentes</h3>
+    <div class="accordion" id="faqRegistro">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿El registro tiene coste?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            ¡No! Registrarte es completamente gratuito.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Puedo cambiar mis datos después?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Sí, puedes editar tu nombre, correo o contraseña desde tu perfil.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            ¿Qué pasa si olvido mi contraseña?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Puedes restablecerla desde la opción “¿Olvidaste tu contraseña?” en la pantalla de login.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

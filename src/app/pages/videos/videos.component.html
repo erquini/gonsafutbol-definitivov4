@@ -1,0 +1,17 @@
+<div class="videos-galeria">
+  <h1 class="galeria-titulo">🎬 Galería de Videos</h1>
+
+  <div *ngFor="let grupo of gruposDeVideos" class="grupo-carrusel">
+    <div class="carrusel">
+      <div class="tarjeta-video" *ngFor="let video of grupo" (click)="verDetalle(video.id)">
+        <img [src]="video.imagen" [alt]="video.titulo" class="imagen-video" />
+        <div class="tarjeta-overlay">
+          <div class="info">
+            <h3>{{ video.titulo }}</h3>
+            <p>{{ video.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+.personalizacion-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h2, h4 {
+  font-weight: 700;
+  text-shadow: 1px 1px 2px #ccc;
+}
+
+/* Formulario */
+.form-control, .form-select {
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Botón principal */
+button {
+  border-radius: 50px;
+  padding: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+/* Canvas */
+canvas {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones */
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide {
+  animation: slideUp 0.8s ease-in-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-bounce {
+  animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .personalizacion-container {
+    padding: 1rem;
+  }
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}

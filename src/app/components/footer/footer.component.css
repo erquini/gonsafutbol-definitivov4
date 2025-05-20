@@ -1,0 +1,23 @@
+footer {
+    background: #222;
+    color: white;
+  }
+  
+  footer h5 {
+    font-weight: bold;
+  }
+  
+  footer a {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  footer a:hover {
+    color: #FFD700;
+  }
+  
+  footer hr {
+    width: 80%;
+    margin: 10px auto;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  

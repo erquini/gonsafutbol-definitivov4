@@ -1,0 +1,69 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  flex: 1;
+}
+
+footer {
+  background: #212529; 
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.1); /* Pequeño efecto hover en el logo */
+}
+
+.site-title {
+  font-size: 1.6rem;  /* Tamaño más grande */
+  font-weight: bold;  /* Negrita */
+  color: white;       /* Color blanco */
+}
+
+.text-highlight {
+  color: #ffc107; /* Amarillo */
+}
+
+/*Ajuste de los enlaces para que queden más elegantes */
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffc107 !important; /* Efecto hover en amarillo */
+}
+
+/*Mejor apariencia en botones */
+.btn-outline-light {
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.btn-warning {
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-weight: bold;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

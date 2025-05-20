@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <h2 class="text-center text-primary ligas-title">🏆 Ligas de Fútbol</h2>
+
+  <div class="row">
+    <div *ngFor="let liga of ligas" class="col-md-4 mb-4">
+      <div class="liga-card">
+        <img *ngIf="liga.league.logo" [src]="liga.league.logo" class="liga-logo" alt="{{ liga.league.name }}">
+        
+        <div class="liga-info">
+          <h5 class="liga-name">{{ liga.league.name }}</h5>
+          <p class="liga-country">{{ liga.country.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

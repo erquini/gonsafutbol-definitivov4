@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <div class="row">
+      <div class="col-md-5 text-center">
+        <img [src]="futbolista.imagen" alt="{{ futbolista.nombre }}" class="img-fluid rounded shadow-sm mb-3" style="max-height: 400px; object-fit: cover;">
+      </div>
+      <div class="col-md-7">
+        <h2 class="text-primary">{{ futbolista.nombre }}</h2>
+        <p class="lead">{{ futbolista.biografia }}</p>
+
+        <h4 class="mt-4 text-success">🏆 Trofeos Ganados</h4>
+        <ul class="list-group list-group-flush mt-2">
+          <li *ngFor="let trofeo of futbolista?.trofeos" class="list-group-item">{{ trofeo }}</li>
+        </ul>
+
+        <h4 class="mt-4 text-info">🧠 Datos curiosos</h4>
+        <p class="fst-italic text-muted">
+          {{ futbolista.nombre }} fue reconocido en múltiples ocasiones como uno de los mejores jugadores de su generación,
+          marcando un antes y un después en la historia del fútbol.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a routerLink="/futbolistas" class="btn btn-outline-secondary">🔙 Volver al listado</a>
+  </div>
+</div>

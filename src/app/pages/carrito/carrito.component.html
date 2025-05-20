@@ -1,0 +1,149 @@
+<div class="container mt-5 text-center carrito-container">
+  <h2 class="text-primary fw-bold mb-4 display-5">🛍️ Tu Carrito de Compras</h2>
+
+  <!-- Si hay productos -->
+  <div *ngIf="carrito.length > 0; else carritoVacio">
+    <table class="table table-hover mt-4 shadow-lg">
+      <thead class="table-dark">
+        <tr>
+          <th>Imagen</th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of carrito; let i = index">
+          <td><img [src]="producto.imagen" width="80" class="rounded shadow"></td>
+          <td>{{ producto.nombre }}</td>
+          <td class="text-success fw-bold">{{ producto.precio | currency:'EUR' }}</td>
+          <td><button class="btn btn-danger" (click)="eliminarProducto(i)">🗑️</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card shadow-lg p-4 mt-4 bg-light">
+      <h4 class="fw-bold mb-3">🧾 Resumen de Compra</h4>
+      <p class="lead">Productos: <strong>{{ carrito.length }}</strong></p>
+      <h3 class="text-success">💰 Total: {{ total | currency:'EUR' }}</h3>
+
+      <div class="d-flex justify-content-center mt-3 flex-wrap gap-2">
+        <button class="btn btn-warning" (click)="seguirComprando()">🔄 Seguir Comprando</button>
+        <button class="btn btn-danger" (click)="vaciarCarrito()">🗑️ Vaciar Carrito</button>
+        <button class="btn btn-success" (click)="procederAlPago()">💳 Proceder al Pago</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Si el carrito está vacío -->
+  <ng-template #carritoVacio>
+    <div class="alert alert-warning mt-5 shadow-lg p-4">
+      <h4 class="fw-bold mb-2">😢 Tu carrito está vacío</h4>
+      <p>¡Agrega productos desde nuestra tienda para comenzar tu compra!</p>
+      <button class="btn btn-primary btn-lg" (click)="seguirComprando()">🛒 Ir a la Tienda</button>
+    </div>
+  </ng-template>
+
+  <!-- Beneficios del sitio -->
+  <section class="mt-5">
+    <h3 class="text-secondary mb-4">🎁 Beneficios Exclusivos</h3>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <i class="bi bi-truck fs-2 text-success"></i>
+        <p class="fw-bold mt-2">Envío rápido en 48h</p>
+        <p>Todos los pedidos se envían en menos de 2 días hábiles.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-shield-check fs-2 text-primary"></i>
+        <p class="fw-bold mt-2">Pagos 100% seguros</p>
+        <p>Utilizamos plataformas confiables como Stripe y PayPal.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-arrow-repeat fs-2 text-warning"></i>
+        <p class="fw-bold mt-2">Devoluciones fáciles</p>
+        <p>14 días para devolver tu producto si no estás satisfecho.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Productos recomendados -->
+<section class="mt-5">
+  <h3 class="text-info mb-4">🌟 Recomendaciones para ti</h3>
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let recomendado of productosRecomendados">
+      <div class="card shadow-sm">
+        <img [src]="recomendado.imagen" class="card-img-top" alt="Producto recomendado">
+        <div class="card-body">
+          <h5 class="card-title">{{ recomendado.nombre }}</h5>
+          <p class="text-success fw-bold">{{ recomendado.precio | currency:'EUR' }}</p>
+          <a [routerLink]="['/producto', recomendado.id]" class="btn btn-outline-primary w-100">
+            👀 Ver producto
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Opiniones de Clientes -->
+<section class="mt-5">
+  <h2 class="text-center text-info">Lo que dicen nuestros clientes</h2>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let opinion of opiniones">
+      <div class="testimonial p-3 bg-white shadow rounded">
+        <p>"{{ opinion.texto }}"</p>
+        <h6 class="text-muted">- {{ opinion.autor }}</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+  
+  
+  
+
+  <!-- Preguntas frecuentes -->
+  <section class="mt-5">
+    <h3 class="text-secondary mb-4">❓ Preguntas Frecuentes</h3>
+    <div class="accordion" id="faqCarrito">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Cuánto tarda el envío?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            El envío tarda entre 24 y 48 horas una vez confirmado el pedido.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Puedo pagar contra reembolso?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            No, por el momento solo aceptamos tarjetas y PayPal por seguridad.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            ¿Qué pasa si mi camiseta no llega?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Nuestro equipo de soporte te asistirá y gestionará una reposición inmediata.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

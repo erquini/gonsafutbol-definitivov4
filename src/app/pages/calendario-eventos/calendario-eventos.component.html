@@ -1,0 +1,129 @@
+<div class="calendar-card">
+  <h2 class="section-title">📅 Buscar Liga o Equipo</h2>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">🏆 Selecciona una competición</label>
+    <select class="form-select" [(ngModel)]="selectedCompetitionCode">
+      <option *ngFor="let comp of allCompetitions" [value]="comp.code">
+        {{ comp.name }}
+      </option>
+    </select>
+    <button class="btn btn-outline-primary mt-2" (click)="cargarEquiposDeUnaLiga()">
+      🔍 Cargar equipos de esta liga
+    </button>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Ej: Champions, Real Madrid, Premier..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchInput()"
+      (keyup.enter)="onSearchSubmit()" />
+
+    <ul class="suggestions-list" *ngIf="suggestions && suggestions.length > 0">
+      <li
+        class="suggestion-item"
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)">
+        <span class="suggestion-name">{{ suggestion.name }}</span>
+        <span class="suggestion-type">({{ suggestion.type }})</span>
+      </li>
+    </ul>
+  </div>
+
+  <hr class="divider" />
+  <h3 class="section-subtitle">📅 Próximos Partidos</h3>
+
+  <div *ngIf="errorMessage" [ngClass]="{
+    'text-danger': errorMessage.startsWith('❌') || errorMessage.startsWith('⚠️'),
+    'text-success': errorMessage.startsWith('✅') || errorMessage.startsWith('⏳')
+  }" class="fw-bold text-center mt-3">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!errorMessage && matches.length === 0 && searchTerm" class="no-results">
+    No hay partidos programados.
+  </div>
+
+  <div class="matches-list" *ngIf="matches.length > 0">
+    <div class="match-card" *ngFor="let match of matches">
+      <div class="match-date">
+        {{ match.utcDate | date:'EEEE d MMMM y, HH:mm' }}
+      </div>
+      <div class="teams">
+        <div class="team home-team">
+          <img *ngIf="match.homeTeam.crest" [src]="match.homeTeam.crest" class="team-crest" />
+          <span class="team-name">{{ match.homeTeam.name }}</span>
+        </div>
+        <div class="vs">vs</div>
+        <div class="team away-team">
+          <span class="team-name">{{ match.awayTeam.name }}</span>
+          <img *ngIf="match.awayTeam.crest" [src]="match.awayTeam.crest" class="team-crest" />
+        </div>
+      </div>
+      <div class="match-info">
+        <span class="competition-name">{{ match.competition.name }}</span>
+        <span *ngIf="match.matchday" class="matchday">🕘 Jornada {{ match.matchday }}</span>
+        <span *ngIf="match.venue" class="venue">🏟️ {{ match.venue }}</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="mt-5">
+    <h2 class="text-center text-info">Lo que dicen nuestros usuarios</h2>
+    <div class="row mt-4">
+      <div class="col-md-4" *ngFor="let opinion of opiniones">
+        <div class="testimonial p-3 bg-white shadow rounded">
+          <p>"{{ opinion.texto }}"</p>
+          <h6 class="text-muted">- {{ opinion.autor }}</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mt-5">
+    <h3 class="text-secondary mb-4">❓ Preguntas Frecuentes</h3>
+    <div class="accordion" id="faqCalendario">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Por qué no aparecen algunos partidos?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Puede que la competición o el equipo no esté disponible o que aún no se haya publicado el calendario.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Qué hacer si recibo un error de demasiadas peticiones?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Solo espera un minuto y vuelve a intentarlo. Estamos limitados por la API de fútbol que utilizamos.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            ¿De dónde provienen los datos?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Toda la información es obtenida en tiempo real desde football-data.org.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,187 @@
+<!-- Hero Section con logo.png como fondo -->
+<div class="hero-section d-flex align-items-center justify-content-center text-white text-center">
+  <div class="hero-overlay p-4 rounded shadow">
+    <h1 class="display-2 fw-bold">
+      ⚽ <span class="text-white">Gonsa</span><span class="text-warning">Fútbol</span> ⚽
+    </h1>
+    <p class="lead mt-3">Revive la historia del fútbol con nuestras camisetas retro exclusivas y personalizadas.</p>
+    <a routerLink="/tienda" class="btn btn-warning btn-lg mt-4 fw-bold shadow">Explora la Colección</a>
+  </div>
+</div>
+
+
+<!-- Banner promocional -->
+<section class="promo-banner text-white text-center p-4 my-5 bg-primary rounded shadow">
+  <h4 class="mb-3">⚽ ¡ENVÍO GRATIS en pedidos superiores a 60€!</h4>
+  <p>Solo por tiempo limitado. Aprovéchalo.</p>
+</section>
+
+<!-- Categorías principales -->
+<section class="mt-5">
+  <h2 class="text-center text-success mb-4">Explora por Categoría</h2>
+  <div class="row text-center">
+    <div class="col-lg-3 col-md-6 mb-4" *ngFor="let categoria of categorias">
+      <div class="category-card p-3 bg-light rounded shadow h-100">
+        <img [src]="categoria.imagen" class="img-fluid mb-3 rounded" [alt]="categoria.nombre" />
+        <h5>{{ categoria.nombre }}</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Productos populares -->
+<section class="mt-5">
+  <h2 class="text-center text-primary mb-4">Camisetas Más Vendidas</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let producto of productosPopulares">
+      <div class="card h-100 shadow-lg animate-fade">
+        <img [src]="producto.imagen" class="card-img-top product-img" [alt]="producto.nombre" />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="text-muted">{{ producto.equipo }} - {{ producto.temporada }}</p>
+          <p class="fw-bold text-success">{{ producto.precio | currency: 'EUR' }}</p>
+          <a [routerLink]="['/producto', producto.id]" class="btn btn-outline-primary">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Personalización -->
+<section class="mt-5 bg-gradient-custom p-5 rounded shadow-sm text-white text-center">
+  <h2 class="display-5 fw-bold mb-3">
+    🎨 Personaliza tu Camiseta
+  </h2>
+  <p class="lead mb-4">
+    Agrega tu <strong>nombre</strong>, elige <strong>número</strong>, <strong>color</strong> y añade <strong>parches únicos</strong>. ¡Diseña una camiseta que sea solo tuya!
+  </p>
+  <a routerLink="/personalizacion" class="btn btn-warning btn-lg px-5 py-2 fw-bold shadow-sm">
+    Ir a Personalización
+  </a>
+</section>
+
+<!-- Opiniones de Clientes -->
+<section class="mt-5">
+  <h2 class="text-center text-info">Lo que dicen nuestros clientes</h2>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let opinion of opiniones">
+      <div class="testimonial p-3 bg-white shadow rounded">
+        <p>"{{ opinion.texto }}"</p>
+        <h6 class="text-muted">- {{ opinion.autor }}</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Galería -->
+<section class="mt-5">
+  <h2 class="text-center text-primary mb-4">Galería de Camisetas</h2>
+  <div class="row justify-content-center">
+<div class="camiseta-col" *ngFor="let galeria of imagenesGaleria">
+      <div class="gallery-item">
+        <img [src]="galeria" alt="Camiseta" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="mt-5 p-4 bg-dark text-white rounded shadow text-center">
+  <h4>Suscríbete para recibir novedades</h4>
+  <p>Ofertas especiales, lanzamientos y noticias sobre camisetas retro.</p>
+  <form (submit)="suscribirse($event)" #formRef="ngForm" class="row justify-content-center">
+    <div class="col-md-4">
+      <input
+        type="email"
+        class="form-control mb-2"
+        name="user_email"
+        [(ngModel)]="email"
+        placeholder="Tu correo electrónico"
+        required
+      />
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-warning w-100" type="submit">Suscribirse</button>
+    </div>
+  </form>
+  <div *ngIf="mensajeExito" class="mt-3 alert alert-success">
+    ✅ {{ mensajeExito }}
+  </div>
+  <div *ngIf="mensajeError" class="mt-3 alert alert-danger">
+    ❌ {{ mensajeError }}
+  </div>
+</section>
+
+
+<!-- Preguntas frecuentes -->
+<section class="mt-5">
+  <h2 class="text-center text-info">❓ Preguntas Frecuentes</h2>
+  <div class="accordion mt-3" id="faqAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+          ¿Los productos son originales?
+        </button>
+      </h2>
+      <div id="faq1" class="accordion-collapse collapse show">
+        <div class="accordion-body">Sí, nuestras camisetas son réplicas oficiales o inspiradas en modelos originales.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+          ¿Cuál es el tiempo de envío?
+        </button>
+      </h2>
+      <div id="faq2" class="accordion-collapse collapse">
+        <div class="accordion-body">Ofrecemos envío estándar (3-5 días) y exprés (24-48h) para toda España.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+          ¿Puedo personalizar camisetas retro?
+        </button>
+      </h2>
+      <div id="faq3" class="accordion-collapse collapse">
+        <div class="accordion-body">¡Sí! Puedes elegir color, número, nombre y añadir parches exclusivos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog -->
+<section class="mt-5">
+  <h2 class="text-center text-warning">Últimas Noticias y Curiosidades</h2>
+  <div class="row mt-4">
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow rounded p-3">
+        <h5>La camiseta más icónica de los 90</h5>
+        <p>Descubre la historia detrás de la camiseta de Alemania 1990 y su diseño único.</p>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="bg-white shadow rounded p-3">
+        <h5>¿Sabías que...?</h5>
+        <p>El diseño de la camiseta de Nigeria 2018 rompió récords de ventas en solo 24 horas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sponsors -->
+<section class="mt-5 p-4 text-center bg-light rounded shadow">
+  <h2 class="text-dark">Nuestros Patrocinadores</h2>
+  <div class="d-flex justify-content-center flex-wrap mt-3">
+    <img src="assets/images/nike.png" class="m-2" alt="Nike" height="50" />
+    <img src="assets/images/adidas.png" class="m-2" alt="Adidas" height="50" />
+    <img src="assets/images/puma.png" class="m-2" alt="Puma" height="50" />
+    <img src="assets/images/umbro.png" class="m-2" alt="Umbro" height="50" />
+  </div>
+</section>
+
+<!-- Extra -->
+<section class="mt-5 text-center">
+  <h4>Comprometidos con la calidad y la pasión por el fútbol</h4>
+  <p class="text-muted">Desde 2010, conectamos emociones con historia a través de camisetas únicas.</p>
+</section>

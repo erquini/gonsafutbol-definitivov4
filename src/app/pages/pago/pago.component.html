@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <h2 class="text-center text-primary fw-bold">💳 Información de Pago</h2>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <form class="p-4 border rounded shadow bg-light">
+        <!-- Errores -->
+        <div *ngIf="errores.length > 0" class="alert alert-danger">
+          <ul>
+            <li *ngFor="let error of errores">{{ error }}</li>
+          </ul>
+        </div>
+
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label class="form-label">Nombre Completo</label>
+          <input [(ngModel)]="nombre" name="nombre" type="text" class="form-control" placeholder="Tu nombre completo" />
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-3">
+          <label class="form-label">Teléfono</label>
+          <input [(ngModel)]="telefono" name="telefono" type="tel" class="form-control" placeholder="+34 600 123 456" />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label">Correo Electrónico</label>
+          <input [(ngModel)]="email" name="email" type="email" class="form-control" placeholder="tucorreo@email.com" />
+        </div>
+
+        <!-- Dirección -->
+        <div class="mb-3">
+          <label class="form-label">Dirección de Envío</label>
+          <input [(ngModel)]="direccion" name="direccion" type="text" class="form-control" placeholder="Calle, número, ciudad" />
+        </div>
+
+        <!-- Código Postal -->
+        <div class="mb-3">
+          <label class="form-label">Código Postal</label>
+          <input [(ngModel)]="codigoPostal" name="codigoPostal" type="text" class="form-control" placeholder="28001" />
+        </div>
+
+        <!-- Tarjeta -->
+        <div class="mb-3">
+          <label class="form-label">Número de Tarjeta</label>
+          <input [(ngModel)]="tarjeta" name="tarjeta" type="text" maxlength="16" class="form-control" placeholder="1234 5678 9012 3456" />
+        </div>
+
+        <!-- Total -->
+        <h4 class="text-success">Total a pagar: {{ carritoTotal | currency: 'EUR' }}</h4>
+
+        <!-- Botón de Pago -->
+        <button type="button" class="btn btn-success w-100" (click)="procesarPago()">💳 Pagar Ahora</button>
+      </form>
+    </div>
+  </div>
+</div>

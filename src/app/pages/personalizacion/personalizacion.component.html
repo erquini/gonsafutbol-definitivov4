@@ -1,0 +1,173 @@
+<div class="container fade-in my-5 personalizacion-container">
+  <h2 class="text-center text-primary fw-bold mb-4 animate-slide">
+    🎨 Personaliza tu Camiseta a tu Gusto
+  </h2>
+
+  <div class="alert alert-info text-center mb-5 shadow-sm">
+    Elige tu color favorito, añade tu nombre y número, selecciona un parche y publicidad, y visualiza el frente y reverso de tu camiseta.
+  </div>
+
+  <!-- Pasos guía -->
+  <div class="row text-center mb-5 iconos-pasos">
+    <div class="col-md-3">
+      <i class="bi bi-palette fs-1 text-primary pulse"></i>
+      <p class="mt-2">1. Elige color</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-fonts fs-1 text-success pulse"></i>
+      <p class="mt-2">2. Nombre y número</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-patch-check fs-1 text-warning pulse"></i>
+      <p class="mt-2">3. Logos y parches</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-cart-check fs-1 text-danger pulse"></i>
+      <p class="mt-2">4. Añadir al carrito</p>
+    </div>
+  </div>
+
+  <!-- Formulario de personalización -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-6 bg-light rounded p-4 shadow-lg">
+      <h5 class="fw-bold text-center mb-4 text-secondary">📝 Formulario de Personalización</h5>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">👤 Nombre en la camiseta</label>
+        <input type="text" class="form-control" [(ngModel)]="nombre" (input)="actualizarVista()" placeholder="Ej: Ronaldinho" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">🔢 Número</label>
+        <input type="number" class="form-control" [(ngModel)]="numero" (input)="actualizarVista()" placeholder="Ej: 10" min="1" max="99" />
+      </div>
+
+      <div class="row text-center">
+        <div class="col-6 mb-3">
+          <label class="form-label fw-bold">
+            <i class="bi bi-palette me-2 text-danger"></i>Color del nombre 🎨
+          </label>
+          <div class="d-flex justify-content-center">
+            <input type="color" class="form-control form-control-color border-2 rounded-circle shadow-sm"
+                   [(ngModel)]="colorNombre" (change)="actualizarVista()" style="width: 60px; height: 40px;" />
+          </div>
+        </div>
+
+        <div class="col-6 mb-3">
+          <label class="form-label fw-bold">
+            <i class="bi bi-palette me-2 text-warning"></i>Color del número 🎨
+          </label>
+          <div class="d-flex justify-content-center">
+            <input type="color" class="form-control form-control-color border-2 rounded-circle shadow-sm"
+                   [(ngModel)]="colorNumero" (change)="actualizarVista()" style="width: 60px; height: 40px;" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">🎨 Color de la camiseta</label>
+        <select class="form-select" [(ngModel)]="color" (change)="actualizarVista()">
+          <option value="roja">🔴 Roja</option>
+          <option value="azul">🔵 Azul</option>
+          <option value="verde">🟢 Verde</option>
+          <option value="blanca">⚪ Blanca</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">🏷️ Parche (escudo)</label>
+        <select class="form-select" [(ngModel)]="parche" (change)="actualizarVista()">
+          <option value="">Sin parche</option>
+          <option value="logo1">Real Madrid</option>
+          <option value="logo2">Barcelona</option>
+          <option value="logo3">España</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">📛 Publicidad central (SVG)</label>
+        <select class="form-select" [(ngModel)]="publicidadCentro" (change)="actualizarVista()">
+          <option value="">Sin publicidad</option>
+          <option value="pub1">Fly emirates</option>
+          <option value="pub2">Qatar airways</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-bold">📛 Publicidad lateral (SVG)</label>
+        <select class="form-select" [(ngModel)]="publicidadLateral" (change)="actualizarVista()">
+          <option value="">Sin publicidad</option>
+          <option value="lat1">Aidas</option>
+          <option value="lat2">Nike</option>
+        </select>
+      </div>
+
+      <button class="btn btn-success w-100 fw-bold animate-bounce" (click)="agregarAlCarrito()">
+        🛒 Añadir al carrito
+      </button>
+    </div>
+  </div>
+
+  <!-- Vista previa -->
+  <div class="text-center mt-5">
+  <h4 class="text-primary fw-bold mb-3">👕 Vista Previa</h4>
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <div class="text-center">
+      <h6 class="text-secondary">Parte Trasera</h6>
+      <canvas #canvasTrasero width="300" height="400" class="rounded shadow-lg border border-2 border-dark"></canvas>
+    </div>
+    <div class="text-center">
+      <h6 class="text-secondary">Parte Delantera</h6>
+      <canvas #canvasFrontal width="300" height="400" class="rounded shadow-lg border border-2 border-dark"></canvas>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Información extra -->
+  <section class="mt-5 text-center">
+    <h5 class="text-success">📦 Producción estimada: 2-3 días</h5>
+    <p class="text-muted">Cada camiseta se produce con materiales premium según tus especificaciones.</p>
+  </section>
+
+  <!-- Preguntas frecuentes -->
+  <section class="mt-5">
+    <h4 class="text-center text-info mb-4">❓ Preguntas Frecuentes</h4>
+    <div class="accordion" id="faqPersonalizacion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Puedo modificar mi diseño después de añadirlo?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Sí, mientras no hayas finalizado tu pedido puedes hacer todos los cambios que quieras.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Cómo se imprimen las camisetas?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Utilizamos vinilo textil resistente y técnicas de impresión profesional para garantizar calidad.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Redes sociales -->
+  <div class="text-center mt-5">
+    <h5 class="mb-3">🌐 Compártelo en tus redes</h5>
+    <div>
+      <a href="#"><i class="bi bi-facebook fs-4 text-primary me-3"></i></a>
+      <a href="#"><i class="bi bi-twitter-x fs-4 text-info me-3"></i></a>
+      <a href="#"><i class="bi bi-instagram fs-4 text-danger"></i></a>
+    </div>
+  </div>
+</div>

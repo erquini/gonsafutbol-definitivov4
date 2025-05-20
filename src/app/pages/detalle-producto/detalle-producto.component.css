@@ -1,0 +1,27 @@
+.img-detalle {
+  max-height: 520px;     /* AUMENTAMOS tamaño máximo */
+  width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.imagen-producto-wrapper {
+  background-color: #fdfdfd;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .img-detalle {
+    max-height: 380px;
+  }
+}
+.imagen-producto-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

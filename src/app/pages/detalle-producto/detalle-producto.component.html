@@ -1,0 +1,28 @@
+<div class="container mt-5 producto-detalle-container">
+  <div class="row align-items-center">
+    <!-- Imagen del producto -->
+    <div class="col-md-6 text-center mb-4 mb-md-0">
+      <div class="imagen-producto-wrapper shadow-lg rounded p-3 bg-white">
+        <img [src]="producto?.imagen" class="img-fluid img-detalle" [alt]="producto?.nombre">
+      </div>
+    </div>
+
+    <!-- Detalles del producto -->
+    <div class="col-md-6">
+      <h2 class="text-primary fw-bold mb-3">{{ producto?.nombre }}</h2>
+      <p class="fs-5 text-muted">{{ producto?.equipo }} - {{ producto?.temporada }}</p>
+      <p class="text-success fs-3 fw-bold">{{ producto?.precio | currency:'EUR' }}</p>
+      <p class="mb-4">{{ producto?.descripcion }}</p>
+
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-warning btn-lg shadow" (click)="agregarAlCarrito()">
+          🛒 Añadir al Carrito
+        </button>
+
+        <button class="btn btn-secondary btn-lg shadow" (click)="volver()">
+          🔙 Volver a la Tienda
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
