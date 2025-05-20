@@ -21,6 +21,11 @@ import { CalendarioEventosComponent } from './pages/calendario-eventos/calendari
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { OpinionesComponent } from './pages/opiniones/opiniones.component';
 
+// Admin
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { UsuariosComponent } from './pages/admin/usuarios/usuarios.component';
+import { ProductosComponent } from './pages/admin/productos/productos.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -42,7 +47,17 @@ const routes: Routes = [
   { path: 'videos/:id', component: DetalleVideoComponent },
   { path: 'eventos', component: CalendarioEventosComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'opiniones', component: OpinionesComponent }
+  { path: 'opiniones', component: OpinionesComponent },
+
+  // ADMIN
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+    children: [
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'productos', component: ProductosComponent }
+    ]
+  }
 ];
 
 @NgModule({

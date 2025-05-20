@@ -79,13 +79,16 @@ constructor(
 ) {}
 
 
-   ngOnInit(): void {
-this.opinionesService.getOpiniones().subscribe((res: any) => {
-  const todas = res.opiniones;
-  this.opiniones = this.obtenerAleatorias(todas, 3);
-});
+ngOnInit(): void {
+  this.carrito = this.carritoService.getCarrito(); 
+  this.calcularTotal(); 
 
-  }
+  this.opinionesService.getOpiniones().subscribe((res: any) => {
+    const todas = res.opiniones;
+    this.opiniones = this.obtenerAleatorias(todas, 3);
+  });
+}
+
 obtenerAleatorias(lista: any[], cantidad: number): any[] {
   const mezcladas = [...lista].sort(() => 0.5 - Math.random());
   return mezcladas.slice(0, cantidad);

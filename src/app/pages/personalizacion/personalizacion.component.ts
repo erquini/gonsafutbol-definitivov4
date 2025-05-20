@@ -2,7 +2,6 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
 import { Producto } from '../../interfaces/producto';
 
-
 @Component({
   selector: 'app-personalizacion',
   templateUrl: './personalizacion.component.html',
@@ -24,9 +23,8 @@ export class PersonalizacionComponent implements AfterViewInit {
   colorNumero: string = '#FFD700';
 
   baseImage = new Image();
-  
-  constructor(private carritoService: CarritoService) {}
 
+  constructor(private carritoService: CarritoService) {}
 
   ngAfterViewInit(): void {
     this.baseImage.src = 'assets/images/base-camiseta.png';
@@ -54,7 +52,6 @@ export class PersonalizacionComponent implements AfterViewInit {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 1;
 
-    // Nombre
     ctx.font = '22px Bebas Neue, sans-serif';
     ctx.fillStyle = this.colorNombre;
     ctx.textAlign = 'center';
@@ -63,7 +60,6 @@ export class PersonalizacionComponent implements AfterViewInit {
     ctx.fillText(this.nombre.toUpperCase(), canvas.width / 2, 140);
     ctx.shadowBlur = 0;
 
-    // Número
     ctx.font = 'bold 44px Anton, sans-serif';
     ctx.lineWidth = 3;
     ctx.strokeStyle = '#000';
@@ -88,17 +84,14 @@ export class PersonalizacionComponent implements AfterViewInit {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 1;
 
-    // Parche (escudo)
     if (this.parche) {
       const parcheImg = new Image();
       parcheImg.src = `assets/images/${this.parche}.svg`;
       parcheImg.onload = () => {
         ctx.drawImage(parcheImg, canvas.width - 130, 110, 40, 40);
-
       };
     }
 
-    // Publicidad central (imagen)
     if (this.publicidadCentro) {
       const pubCentroImg = new Image();
       pubCentroImg.src = `assets/images/${this.publicidadCentro}.svg`;
@@ -107,12 +100,11 @@ export class PersonalizacionComponent implements AfterViewInit {
       };
     }
 
-    // Publicidad lateral (imagen)
     if (this.publicidadLateral) {
       const pubLateralImg = new Image();
       pubLateralImg.src = `assets/images/${this.publicidadLateral}.svg`;
       pubLateralImg.onload = () => {
-        ctx.drawImage(pubLateralImg, 90, 110, 40, 40); 
+        ctx.drawImage(pubLateralImg, 90, 110, 40, 40);
       };
     }
   }
@@ -121,22 +113,21 @@ export class PersonalizacionComponent implements AfterViewInit {
     this.dibujarCamisetas();
   }
 
-agregarAlCarrito(): void {
-  const productoPersonalizado: Producto = {
-    id: Date.now(),
-    nombre: `Camiseta personalizada ${this.nombre} #${this.numero}`,
-    equipo: 'Personalizada',
-    temporada: 'Actual',
-    imagen: 'assets/images/base-camiseta.png', // o imagen generada desde canvas
-    precio: 49.99,
-    descripcion: `Color: ${this.color}, Escudo: ${this.parche}, Publicidad centro: ${this.publicidadCentro}, lateral: ${this.publicidadLateral}`,
-    stock: 1
-  };
+  agregarAlCarrito(): void {
+    const productoPersonalizado: Producto = {
+      id: Date.now(),
+      nombre: `Camiseta personalizada ${this.nombre} #${this.numero}`,
+      categoria: 'Personalizada',
+      temporada: 'Actual',
+      imagen: 'assets/images/base-camiseta.png',
+      precio: 49.99,
+      descripcion: `Color: ${this.color}, Escudo: ${this.parche}, Publicidad centro: ${this.publicidadCentro}, lateral: ${this.publicidadLateral}`,
+      stock: 1
+    };
 
-  this.carritoService.agregarProducto(productoPersonalizado);
-  alert(`🛒 Camiseta personalizada añadida al carrito: ${this.nombre} #${this.numero}`);
-}
-
+    this.carritoService.agregarProducto(productoPersonalizado);
+    alert(`🛒 Camiseta personalizada añadida al carrito: ${this.nombre} #${this.numero}`);
+  }
 
   obtenerColorHex(color: string): string {
     switch (color) {

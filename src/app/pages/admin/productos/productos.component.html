@@ -1,0 +1,83 @@
+<div class="container mt-4">
+
+  <!-- Formulario para añadir producto -->
+  <h4 class="text-primary mb-3">➕ Añadir Nuevo Producto</h4>
+  <form (ngSubmit)="crearProducto()" #formProducto="ngForm" enctype="multipart/form-data">
+    <div class="row g-3 mb-4">
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="nuevoProducto.nombre" name="nombre" required>
+      </div>
+      <div class="col-md-2">
+        <input type="number" class="form-control" placeholder="Precio" [(ngModel)]="nuevoProducto.precio" name="precio" required>
+      </div>
+      <div class="col-md-2">
+        <input type="number" class="form-control" placeholder="Stock" [(ngModel)]="nuevoProducto.stock" name="stock" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Categoría" [(ngModel)]="nuevoProducto.categoria" name="categoria" required>
+      </div>
+      <div class="col-md-6">
+        <input type="file" class="form-control" (change)="onFileSelected($event)" required>
+      </div>
+      <div class="col-md-6 d-grid">
+        <button type="submit" class="btn btn-success">📤 Crear Producto</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Tabla de productos existente -->
+  <h3 class="text-success">🛒 Gestión de Productos</h3>
+  <table class="table table-bordered mt-3">
+    <thead class="table-success">
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Categoría</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of productos">
+        <img [src]="getRutaImagen(p.imagen)" width="60" alt="Imagen del producto">
+
+        <!-- Nombre -->
+        <td *ngIf="productoEditando?.id !== p.id">{{ p.nombre }}</td>
+        <td *ngIf="productoEditando?.id === p.id">
+          <input [(ngModel)]="productoEditando!.nombre" class="form-control" />
+        </td>
+
+        <!-- Precio -->
+        <td *ngIf="productoEditando?.id !== p.id">{{ p.precio | currency:'EUR' }}</td>
+        <td *ngIf="productoEditando?.id === p.id">
+          <input type="number" [(ngModel)]="productoEditando!.precio" class="form-control" />
+        </td>
+
+        <!-- Stock -->
+        <td *ngIf="productoEditando?.id !== p.id">{{ p.stock }}</td>
+        <td *ngIf="productoEditando?.id === p.id">
+          <input type="number" [(ngModel)]="productoEditando!.stock" class="form-control" />
+        </td>
+
+        <!-- Categoría -->
+        <td *ngIf="productoEditando?.id !== p.id">{{ p.categoria }}</td>
+        <td *ngIf="productoEditando?.id === p.id">
+          <input [(ngModel)]="productoEditando!.categoria" class="form-control" />
+        </td>
+
+        <!-- Acciones -->
+        <td>
+          <ng-container *ngIf="productoEditando?.id !== p.id">
+            <button class="btn btn-warning btn-sm me-2" (click)="editar(p)">✏️</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(p.id)">🗑️</button>
+          </ng-container>
+          <ng-container *ngIf="productoEditando?.id === p.id">
+            <button class="btn btn-success btn-sm me-2" (click)="guardarCambios()">💾</button>
+            <button class="btn btn-secondary btn-sm" (click)="cancelarEdicion()">❌</button>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

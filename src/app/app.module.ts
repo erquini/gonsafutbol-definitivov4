@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// Material opcional
+// Angular Material opcional
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,6 +32,13 @@ import { DetalleVideoComponent } from './pages/detalle-video/detalle-video.compo
 import { CalendarioEventosComponent } from './pages/calendario-eventos/calendario-eventos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { OpinionesComponent } from './pages/opiniones/opiniones.component';
+import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
+import { ContactoConfirmacionComponent } from './pages/contacto-confirmacion/contacto-confirmacion.component';
+
+// Admin
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { UsuariosComponent } from './pages/admin/usuarios/usuarios.component';
+import { ProductosComponent } from './pages/admin/productos/productos.component';
 
 // Servicios
 import { FutbolistasService } from './services/futbolistas.service';
@@ -61,7 +68,14 @@ import { OpinionesService } from './services/opiniones.service';
     DetalleVideoComponent,
     CalendarioEventosComponent,
     PerfilComponent,
-    OpinionesComponent
+    OpinionesComponent,
+    ConfirmacionComponent,
+    ContactoConfirmacionComponent,
+
+    // Admin
+    AdminDashboardComponent,
+    UsuariosComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,

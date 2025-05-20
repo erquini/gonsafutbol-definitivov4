@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
   <div class="container-fluid">
-    <!-- Botón menú lateral izquierdo -->
+    <!-- Botón menú lateral -->
     <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
       ☰
     </button>
@@ -16,35 +16,50 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Enlaces principales -->
+    <!-- Menú principal -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" routerLink="/home">🏠 Inicio</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/tienda">🛒 Tienda</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/contacto">📞 Contacto</a></li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-light" routerLink="/carrito">🛍️ Carrito</a>
+        <li class="nav-item"><a class="nav-link btn btn-outline-light" routerLink="/carrito">🛍️ Carrito</a></li>
+
+        <!-- Admin (como botón independiente si está logueado y es admin) -->
+        <li *ngIf="usuario?.rol === 'admin'" class="nav-item dropdown">
+          <button class="btn btn-outline-info dropdown-toggle ms-2 mt-1" data-bs-toggle="dropdown">
+            🛠️ Admin
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" routerLink="/admin/usuarios">👥 Usuarios</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/productos">📦 Productos</a></li>
+          </ul>
         </li>
       </ul>
 
-      <!-- Usuario -->
-      <ul class="navbar-nav ms-3">
-        <li *ngIf="usuarioLogueado" class="nav-item d-flex align-items-center">
-          <span class="text-light fw-bold me-3">👋 Hola, {{ usuarioLogueado }}</span>
+      <!-- Usuario logueado -->
+      <ul class="navbar-nav ms-3" *ngIf="usuario; else sinSesion">
+        <li class="nav-item d-flex align-items-center">
+          <span class="text-light fw-bold me-3">👋 Hola, {{ usuario.nombre }}</span>
           <button class="btn btn-danger btn-sm" (click)="cerrarSesion()">🚪 Cerrar Sesión</button>
         </li>
-        <li *ngIf="!usuarioLogueado" class="nav-item">
-          <a class="btn btn-outline-light me-2" routerLink="/login">🔑 Iniciar Sesión</a>
-        </li>
-        <li *ngIf="!usuarioLogueado" class="nav-item">
-          <a class="btn btn-warning" routerLink="/registro">📝 Registrarse</a>
-        </li>
       </ul>
+
+      <!-- Usuario no logueado -->
+      <ng-template #sinSesion>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="btn btn-outline-light me-2" routerLink="/login">🔑 Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-warning" routerLink="/registro">📝 Registrarse</a>
+          </li>
+        </ul>
+      </ng-template>
     </div>
   </div>
 </nav>
 
-<!-- Menú desplegable lateral -->
+<!-- Menú lateral -->
 <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sidebarMenu">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title">📂 Menú rápido</h5>
@@ -52,13 +67,13 @@
   </div>
   <div class="offcanvas-body">
     <ul class="list-unstyled">
-  <li *ngIf="usuarioLogueado"><a routerLink="/perfil" class="text-white d-block py-2">👤 Mi perfil</a></li>
-  <li><hr class="dropdown-divider bg-light"></li>
-  <li><a routerLink="/videos" class="text-white d-block py-2">🎥 Sección de Videos</a></li>
-  <li><a routerLink="/futbolistas" class="text-white d-block py-2">📘 Sección Informativa</a></li>
-  <li><a routerLink="/eventos" class="text-white d-block py-2">📅 Calendario de Eventos</a></li>
-  <li><a routerLink="/personalizacion" class="text-white d-block py-2">🎨 Personaliza tu camiseta</a></li>
-  <li><a routerLink="/opiniones" class="text-white d-block py-2">🗣️ Opiniones</a></li>
-</ul>
+      <li *ngIf="usuario"><a routerLink="/perfil" class="text-white d-block py-2">👤 Mi perfil</a></li>
+      <li><hr class="dropdown-divider bg-light"></li>
+      <li><a routerLink="/videos" class="text-white d-block py-2">🎥 Sección de Videos</a></li>
+      <li><a routerLink="/futbolistas" class="text-white d-block py-2">📘 Sección Informativa</a></li>
+      <li><a routerLink="/eventos" class="text-white d-block py-2">📅 Calendario de Eventos</a></li>
+      <li><a routerLink="/personalizacion" class="text-white d-block py-2">🎨 Personaliza tu camiseta</a></li>
+      <li><a routerLink="/opiniones" class="text-white d-block py-2">🗣️ Opiniones</a></li>
+    </ul>
   </div>
 </div>

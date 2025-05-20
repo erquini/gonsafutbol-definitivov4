@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <h3 class="text-primary">👥 Lista de Usuarios</h3>
+
+  <table class="table table-striped mt-3 align-middle text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>Avatar</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of usuarios">
+        <!-- Avatar -->
+        <td>
+          <img [src]="getRutaImagen(u.avatar)" alt="Avatar" width="50" height="50" class="rounded-circle border">
+        </td>
+
+        <!-- Nombre -->
+        <td *ngIf="usuarioEditando?.id !== u.id">{{ u.nombre }}</td>
+        <td *ngIf="usuarioEditando?.id === u.id">
+          <input [(ngModel)]="usuarioEditando!.nombre" class="form-control" />
+        </td>
+
+        <!-- Email -->
+        <td *ngIf="usuarioEditando?.id !== u.id">{{ u.email }}</td>
+        <td *ngIf="usuarioEditando?.id === u.id">
+          <input [(ngModel)]="usuarioEditando!.email" class="form-control" />
+        </td>
+
+        <!-- Rol -->
+        <td *ngIf="usuarioEditando?.id !== u.id">{{ u.rol }}</td>
+        <td *ngIf="usuarioEditando?.id === u.id">
+          <select [(ngModel)]="usuarioEditando!.rol" class="form-select">
+            <option value="cliente">cliente</option>
+            <option value="admin">admin</option>
+          </select>
+        </td>
+
+        <!-- Teléfono -->
+        <td *ngIf="usuarioEditando?.id !== u.id">{{ u.telefono }}</td>
+        <td *ngIf="usuarioEditando?.id === u.id">
+          <input [(ngModel)]="usuarioEditando!.telefono" class="form-control" />
+        </td>
+
+        <!-- Dirección -->
+        <td *ngIf="usuarioEditando?.id !== u.id">{{ u.direccion }}</td>
+        <td *ngIf="usuarioEditando?.id === u.id">
+          <input [(ngModel)]="usuarioEditando!.direccion" class="form-control" />
+        </td>
+
+        <!-- Acciones -->
+        <td class="text-nowrap">
+          <div class="d-flex justify-content-center gap-2 flex-wrap">
+            <ng-container *ngIf="usuarioEditando?.id !== u.id">
+              <button class="btn btn-warning btn-sm" (click)="editar(u)">✏️</button>
+              <button class="btn btn-danger btn-sm" (click)="eliminar(u.id)">🗑️</button>
+            </ng-container>
+            <ng-container *ngIf="usuarioEditando?.id === u.id">
+              <button class="btn btn-success btn-sm" (click)="guardarCambios()">💾</button>
+              <button class="btn btn-secondary btn-sm" (click)="cancelarEdicion()">❌</button>
+            </ng-container>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

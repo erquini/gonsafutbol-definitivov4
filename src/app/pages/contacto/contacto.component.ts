@@ -42,10 +42,10 @@ export class ContactoComponent {
 
     emailjs
       .send(
-        'service_302z81o',         // Service ID
-        'template_havxonk',        // Template ID
+        'service_302z81o',         
+        'template_havxonk',        
         templateParams,
-        'pWvKxZdYaipY6srTM'        // Public Key
+        'pWvKxZdYaipY6srTM'        
       )
       .then(
         (response) => {

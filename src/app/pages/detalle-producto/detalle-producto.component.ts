@@ -2,41 +2,64 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { Producto } from '../../interfaces/producto';
-import { CarritoService } from '../../services/carrito.service';  // Importamos el servicio para manejar el carrito
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
-  standalone: false,
-  styleUrls: ['./detalle-producto.component.css']
+  styleUrls: ['./detalle-producto.component.css'],
+  standalone: false
 })
 export class DetalleProductoComponent {
-  producto: Producto | undefined;  // Variable para almacenar el producto
+  producto: Producto | null = null;
+  cargando: boolean = true;
+  error: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,  // Para obtener parámetros de la URL
-    private router: Router,  // Para navegar entre páginas
-    private productoService: ProductoService,  // Servicio que obtiene productos
-    private carritoService: CarritoService  // Servicio para gestionar el carrito
+    private route: ActivatedRoute,
+    private router: Router,
+    private productoService: ProductoService,
+    private carritoService: CarritoService
   ) {}
 
-  ngOnInit() {
-    // Obtenemos el id del producto desde la URL
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    // Buscamos el producto por su id
-    this.producto = this.productoService.getProductoById(id);
-  }
+  ngOnInit(): void {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const id = idParam ? Number(idParam) : null;
 
-  // Función para añadir el producto al carrito
-  agregarAlCarrito() {
-    if (this.producto) {
-      this.carritoService.agregarProducto(this.producto);
-      alert(`✅ ${this.producto.nombre} añadida al carrito.`);  // Notificación al usuario
+    if (!id || isNaN(id)) {
+      this.error = true;
+      this.cargando = false;
+      return;
     }
+
+    this.productoService.getProductoById(id).subscribe({
+      next: (producto) => {
+        this.producto = producto;
+        this.cargando = false;
+      },
+      error: () => {
+        this.error = true;
+        this.cargando = false;
+      }
+    });
   }
 
-  // Función para volver a la página de la tienda
-  volver() {
+agregarAlCarrito(): void {
+  if (this.producto) {
+    this.carritoService.agregarProducto(this.producto);
+    alert(`✅ ${this.producto.nombre} añadida al carrito.`);
+  }
+}
+
+
+  volver(): void {
     this.router.navigate(['/tienda']);
   }
+  getRutaImagen(imagen: string): string {
+  if (imagen.startsWith('uploads/')) {
+    return 'http://localhost/gonsa-futbol-api/' + imagen;
+  }
+  return imagen; // ya es assets/...
+}
+
 }

@@ -59,13 +59,13 @@
         
         <!-- Imagen -->
         <div class="producto-img-container">
-          <img [src]="producto.imagen" class="producto-imagen" [alt]="producto.nombre">
+        <img [src]="getRutaImagen(producto.imagen)" class="producto-imagen" [alt]="producto.nombre">
         </div>
 
         <!-- Cuerpo -->
         <div class="card-body text-center d-flex flex-column">
           <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="text-muted mb-1">{{ producto.equipo }} - {{ producto.temporada }}</p>
+          <p class="text-muted mb-1">{{ producto.categoria }} - {{ producto.temporada }}</p>
           <p class="text-success fw-bold">{{ producto.precio | currency:'EUR' }}</p>
           
           <!-- Stock -->

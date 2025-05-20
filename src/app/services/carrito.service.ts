@@ -8,12 +8,15 @@ export class CarritoService {
   private carrito: Producto[] = [];
 
   constructor() {
-    //Recuperar carrito almacenado en `localStorage`
-    const carritoGuardado = localStorage.getItem('carrito');
-    if (carritoGuardado) {
-      this.carrito = JSON.parse(carritoGuardado);
-    }
-  }
+const carritoGuardado = localStorage.getItem('carrito');
+if (carritoGuardado) {
+  const productos: Producto[] = JSON.parse(carritoGuardado);
+  this.carrito = productos.map(p => ({
+    ...p,
+    precio: Number(p.precio) 
+  }));
+}}
+
 
   /** Obtener todos los productos del carrito */
   getCarrito(): Producto[] {

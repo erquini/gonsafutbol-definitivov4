@@ -42,8 +42,11 @@ export class TiendaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productos = this.productoService.getProductos();
-    this.aplicarFiltros();
+    // CAMBIO: Suscribirse al Observable que viene del backend
+    this.productoService.getProductos().subscribe((res: Producto[]) => {
+      this.productos = res;
+      this.aplicarFiltros();
+    });
 
     this.opinionesService.getOpiniones().subscribe((res: any) => {
       this.opiniones = this.obtenerAleatorias(res.opiniones, 3);
@@ -52,10 +55,11 @@ export class TiendaComponent implements OnInit {
 
   aplicarFiltros(): void {
     this.productosFiltrados = this.productos.filter(producto =>
-      producto.equipo.toLowerCase().includes(this.filtroEquipo.toLowerCase()) &&
-      producto.temporada.toLowerCase().includes(this.filtroTemporada.toLowerCase()) &&
-      producto.precio <= this.filtroPrecio
-    );
+  (producto.categoria || '').toLowerCase().includes(this.filtroEquipo.toLowerCase()) &&
+  (producto.temporada || '').toLowerCase().includes(this.filtroTemporada.toLowerCase()) &&
+  producto.precio <= this.filtroPrecio
+);
+
     this.ordenarProductos();
   }
 
@@ -108,4 +112,11 @@ export class TiendaComponent implements OnInit {
         this.mensajeError = '❌ Error al enviar el correo. Inténtalo más tarde.';
       });
   }
+  getRutaImagen(imagen: string): string {
+  if (imagen.startsWith('uploads/')) {
+    return 'http://localhost/gonsa-futbol-api/' + imagen;
+  }
+  return imagen; // ya es assets/...
+}
+
 }

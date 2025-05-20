@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarritoService } from '../../services/carrito.service';
 import emailjs from '@emailjs/browser';
@@ -10,7 +10,7 @@ import { Producto } from '../../interfaces/producto';
   styleUrls: ['./pago.component.css'],
   standalone: false
 })
-export class PagoComponent {
+export class PagoComponent implements OnInit {
   nombre: string = '';
   email: string = '';
   telefono: string = '';
@@ -29,6 +29,12 @@ export class PagoComponent {
 
   ngOnInit() {
     this.carrito = this.carritoService.getCarrito();
+
+    // Asegurarse de que los precios son números
+    this.carrito.forEach(p => {
+      p.precio = Number(p.precio);
+    });
+
     this.carritoTotal = this.carrito.reduce((total, producto) => total + producto.precio, 0);
   }
 
@@ -60,12 +66,12 @@ export class PagoComponent {
     }
 
     if (this.errores.length === 0) {
-      const productosTexto = this.carrito.map(p => `- ${p.nombre} — ${p.precio.toFixed(2)} €`).join('\n');
+      const productosTexto = this.carrito.map(p => `- ${p.nombre} — ${Number(p.precio).toFixed(2)} €`).join('\n');
       const resumen = `
 🛍️ Productos:\n
 ${productosTexto}
 
-Total: ${this.carritoTotal.toFixed(2)} €`;
+Total: ${Number(this.carritoTotal).toFixed(2)} €`;
 
       const templateParams = {
         to_email: this.email,

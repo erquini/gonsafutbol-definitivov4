@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 
@@ -6,27 +6,33 @@ import { Router } from '@angular/router';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  standalone: false
+  standalone:false
 })
 export class NavbarComponent implements OnInit {
-  usuarioLogueado: string | null = null;
+  usuario: any = null;
 
   constructor(
     private usuarioService: UsuarioService,
-    private router: Router,
-    private cdRef: ChangeDetectorRef
+    private router: Router
   ) {}
 
-ngOnInit(): void {
-  this.usuarioService.usuario$.subscribe(usuario => {
-    this.usuarioLogueado = usuario;
-  });
-}
+  ngOnInit(): void {
+    // Si el observable emite datos (por login normal)
+    this.usuarioService.usuario$.subscribe(usuario => {
+      this.usuario = usuario;
+    });
 
-cerrarSesion(): void {
-  this.usuarioService.cerrarSesion().subscribe(() => {
-    this.router.navigate(['/home']);
-  });
-}
+    // Recuperar desde localStorage por si se recarga la página
+    const guardado = localStorage.getItem('usuario');
+    if (guardado && !this.usuario) {
+      this.usuario = JSON.parse(guardado);
+    }
+  }
 
+  cerrarSesion(): void {
+    this.usuarioService.cerrarSesion().subscribe(() => {
+      this.usuario = null;
+      this.router.navigate(['/home']);
+    });
+  }
 }

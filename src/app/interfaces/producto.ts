@@ -1,10 +1,10 @@
 export interface Producto {
   id: number;
   nombre: string;
-  equipo: string;
-  temporada: string;
-  imagen: string;
+  descripcion: string;
   precio: number;
-  descripcion?: string;
-  stock: number; 
+  stock: number;
+  imagen: string;
+  categoria: string;
+  temporada: string;
 }
